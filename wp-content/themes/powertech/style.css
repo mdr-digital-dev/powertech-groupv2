@@ -1,0 +1,18 @@
+/*
+Theme Name:  PowerTech Group of Chicago
+Theme URI:   https://powertechil.com
+Author:      PowerTech Group
+Author URI:  https://powertechil.com
+Description: Custom premium WordPress theme for PowerTech Group of Chicago — a Licensed Security Company and UL Listed provider serving industrial and commercial clients with Safety & Security systems and IT/Managed IT Services.
+Version:     1.0.0
+License:     GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: powertech
+Tags:        custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, full-width-template, two-columns, right-sidebar, flexible-header
+*/
+
+/*
+ * All theme styles are loaded via functions.php from assets/css/main.css
+ * This file contains only the required WordPress theme header above.
+ * Do not add styles here — use assets/css/main.css instead.
+ */
