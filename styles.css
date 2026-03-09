@@ -1486,18 +1486,27 @@ select.form-control { cursor: pointer; }
   pointer-events: none;
 }
 .video-mfr {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.78rem;
-  color: var(--text-light);
-  font-weight: 500;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+.video-mfr::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--red);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 .video-mfr-logo {
-  height: 18px;
-  width: auto;
-  object-fit: contain;
-  border-radius: 3px;
+  display: none;
 }
 .videos-grid-4 {
   grid-template-columns: repeat(4, 1fr);
