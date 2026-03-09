@@ -1,1 +1,5 @@
-File not found: /v1/AUTH_mw/wikipedia-commons-local-public.f8/f/f8/Cisco_Meraki_logo.svg
+<svg xmlns="http://www.w3.org/2000/svg" width="150" height="50" viewBox="0 0 150 50">
+  <rect width="150" height="50" fill="none"/>
+  <text x="8" y="27" font-family="Arial,sans-serif" font-size="11" font-weight="400" fill="#666">CISCO</text>
+  <text x="8" y="41" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#00A99D" letter-spacing="-0.3">Meraki</text>
+</svg>
