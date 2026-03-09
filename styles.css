@@ -1444,7 +1444,6 @@ select.form-control { cursor: pointer; }
   border-right: 1px solid rgba(0,0,0,0.08);
 }
 .partner-logo-item img { display: none; }
-.partner-logo-item span { display: none; }
 
 .partner-brand-name {
   font-family: 'Arial Black', Arial, Helvetica, sans-serif;
