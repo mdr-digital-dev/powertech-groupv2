@@ -1444,24 +1444,20 @@ select.form-control { cursor: pointer; }
   flex-shrink: 0;
 }
 .partner-logo-item img {
-  height: 32px;
+  height: 30px;
   width: auto;
-  max-width: 120px;
+  max-width: 160px;
   object-fit: contain;
-  filter: grayscale(100%);
-  opacity: 0.55;
+  filter: grayscale(100%) contrast(0.8);
+  opacity: 0.65;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 .partner-logo-item:hover img {
-  filter: grayscale(0%);
+  filter: grayscale(0%) contrast(1);
   opacity: 1;
 }
 .partner-logo-item span {
-  font-size: 0.68rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: var(--text-light);
+  display: none;
 }
 
 /* === VIDEO EMBEDS === */

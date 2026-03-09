@@ -1,5 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="180" height="50" viewBox="0 0 180 50">
-  <rect width="180" height="50" fill="none"/>
-  <text x="8" y="26" font-family="Arial Black,Arial,sans-serif" font-size="13" font-weight="900" fill="#CC0000">EMERGENCY</text>
-  <text x="8" y="42" font-family="Arial Black,Arial,sans-serif" font-size="13" font-weight="900" fill="#1a1a1a">24</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="175" height="50" viewBox="0 0 175 50">
+  <text x="6" y="32" font-family="Arial Black,Arial,Helvetica,sans-serif" font-size="16" font-weight="800" fill="#CC0000" letter-spacing="0">Emergency 24</text>
 </svg>
