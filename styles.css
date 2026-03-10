@@ -1433,25 +1433,21 @@ select.form-control { cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 36px;
+  padding: 0 32px;
   flex-shrink: 0;
-  border-right: 1px solid rgba(0,0,0,0.08);
 }
-.partner-logo-item img { display: none; }
-
-.partner-brand-name {
-  font-family: 'Arial Black', Arial, Helvetica, sans-serif;
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #bbb;
-  transition: color 0.3s ease;
-  white-space: nowrap;
-  user-select: none;
+.partner-logo-item img {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  object-position: center;
+  filter: grayscale(100%) opacity(0.55);
+  transition: filter 0.35s ease;
+  display: block;
 }
-.partner-logo-item:hover .partner-brand-name {
-  color: var(--brand-color);
+.partner-logo-item:hover img {
+  filter: grayscale(0%) opacity(1);
 }
 
 /* === VIDEO EMBEDS === */
