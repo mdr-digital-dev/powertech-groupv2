@@ -370,7 +370,6 @@ p  { line-height: 1.75; }
 
 /* Mobile Menu */
 .mobile-menu {
-  display: none;
   position: fixed;
   top: var(--nav-height); left: 0; right: 0; bottom: 0;
   background: var(--navy);
@@ -378,10 +377,17 @@ p  { line-height: 1.75; }
   padding: 16px 20px;
   opacity: 0;
   transform: translateY(-10px);
-  transition: all var(--transition);
+  transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
+  visibility: hidden;
+  z-index: 999;
 }
-.mobile-menu.active { opacity: 1; transform: translateY(0); pointer-events: all; }
+.mobile-menu.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+  visibility: visible;
+}
 .mobile-nav-item { border-bottom: 1px solid rgba(255,255,255,0.07); }
 .mobile-nav-link {
   display: flex;
