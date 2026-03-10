@@ -166,8 +166,17 @@ p  { line-height: 1.75; }
 }
 .navbar.scrolled {
   box-shadow: var(--shadow-nav);
+  background: transparent; /* handled by ::before to avoid breaking fixed children */
+}
+/* Use ::before for backdrop-filter so position:fixed children (mobile-menu) aren't affected */
+.navbar.scrolled::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: rgba(13,27,42,0.97);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: -1;
 }
 .nav-container {
   display: flex;
@@ -1294,6 +1303,9 @@ select.form-control { cursor: pointer; }
   .about-visual      { height: 220px; }
   .mission-grid      { grid-template-columns: 1fr; }
   .contact-layout    { grid-template-columns: 1fr; }
+
+  /* Touch targets */
+  .btn, a.btn, button { min-height: 44px; }
 
   /* Subpage inline grids */
   [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
