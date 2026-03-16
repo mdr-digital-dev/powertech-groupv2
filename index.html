@@ -286,6 +286,17 @@
 
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero" id="home">
+  <div class="hero-carousel" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('images/hero/IMG_3305.jpg')"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_1249.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3306.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3307.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3308.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3309.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3310.jpg"></div>
+  </div>
+  <div class="hero-carousel-overlay"></div>
+  <div class="hero-carousel-dots" aria-label="Slide indicators"></div>
   <div class="hero-bg"></div>
   <div class="hero-grid-pattern"></div>
   <div class="hero-accent"></div>
@@ -401,6 +412,21 @@
     </div>
   </div>
 </section>
+
+<!-- ══════════════════ COVERAGE MAP ══════════════════ -->
+<section class="section coverage-section" id="coverage">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <span class="section-label coverage-label">Nationwide Reach</span>
+      <h2 class="section-title coverage-title">Clients Across the Country</h2>
+      <p class="section-subtitle coverage-subtitle">From Chicago headquarters to clients coast to coast — PowerTech Group delivers world-class security and IT infrastructure wherever you need it.</p>
+    </div>
+    <div class="coverage-map-wrap fade-in">
+      <div id="ptg-map"></div>
+    </div>
+  </div>
+</section>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <!-- ══════════════════ GOOGLE REVIEWS ══════════════════ -->
 <section class="section reviews-section">
@@ -698,5 +724,31 @@
 </footer>
 
 <script src="nav.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  var map=L.map('ptg-map',{zoomControl:false,scrollWheelZoom:false,attributionControl:false,minZoom:2,maxZoom:10});
+  map.fitBounds([[24.5,-125.0],[49.5,-66.5]],{padding:[16,16]});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(map);
+  var pts=[
+    [42.0651,-87.9370,'HQ — Arlington Heights, IL'],[41.8827,-87.6233,'Chicago, IL'],[41.8697,-87.7200,'Cicero, IL'],[42.0112,-87.8600,'Schaumburg, IL'],
+    [40.7128,-74.0060,'New York, NY'],[42.3601,-71.0589,'Boston, MA'],[39.9526,-75.1652,'Philadelphia, PA'],[38.9072,-77.0369,'Washington, DC'],
+    [33.7490,-84.3880,'Atlanta, GA'],[25.7617,-80.1918,'Miami, FL'],[27.9506,-82.4572,'Tampa, FL'],
+    [29.7604,-95.3698,'Houston, TX'],[30.2672,-97.7431,'Austin, TX'],[32.7767,-96.7970,'Dallas, TX'],
+    [39.0997,-94.5786,'Kansas City, MO'],[44.9778,-93.2650,'Minneapolis, MN'],[41.4993,-81.6944,'Cleveland, OH'],[39.7684,-86.1581,'Indianapolis, IN'],
+    [34.0522,-118.2437,'Los Angeles, CA'],[37.7749,-122.4194,'San Francisco, CA'],[47.6062,-122.3321,'Seattle, WA'],
+    [33.4484,-112.0740,'Phoenix, AZ'],[39.7392,-104.9903,'Denver, CO'],[36.1699,-115.1398,'Las Vegas, NV']
+  ];
+  var icon=L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#E5333B;border:2px solid rgba(255,255,255,0.5);box-shadow:0 0 8px #E5333B99;"></div>',iconSize:[10,10],iconAnchor:[5,5]});
+  pts.forEach(function(p){L.marker([p[0],p[1]],{icon:icon}).bindPopup('<strong>'+p[2]+'</strong>',{className:'ptg-popup'}).addTo(map);});
+})();
+(function(){
+  var slides=document.querySelectorAll('.hero-slide'),dots=document.querySelector('.hero-carousel-dots'),cur=0,timer;
+  slides.forEach(function(_,i){var d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Slide '+(i+1));d.addEventListener('click',function(){goTo(i);});dots.appendChild(d);});
+  function load(n){var s=slides[n];if(s.dataset.bg&&!s.style.backgroundImage)s.style.backgroundImage="url('"+s.dataset.bg+"')";}
+  function goTo(n){slides[cur].classList.remove('active');dots.children[cur].classList.remove('active');cur=(n+slides.length)%slides.length;load(cur);slides[cur].classList.add('active');dots.children[cur].classList.add('active');load((cur+1)%slides.length);clearInterval(timer);timer=setInterval(function(){goTo(cur+1);},5000);}
+  load(1);timer=setInterval(function(){goTo(cur+1);},5000);
+})();
+</script>
 </body>
 </html>
