@@ -286,6 +286,17 @@
 
 <!-- ══════════════════ HERO ══════════════════ -->
 <section class="hero" id="home">
+  <div class="hero-carousel" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('images/hero/IMG_3305.jpg')"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_1249.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3306.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3307.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3308.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3309.jpg"></div>
+    <div class="hero-slide" data-bg="images/hero/IMG_3310.jpg"></div>
+  </div>
+  <div class="hero-carousel-overlay"></div>
+  <div class="hero-carousel-dots" aria-label="Slide indicators"></div>
   <div class="hero-bg"></div>
   <div class="hero-grid-pattern"></div>
   <div class="hero-accent"></div>
@@ -698,5 +709,14 @@
 </footer>
 
 <script src="nav.js"></script>
+<script>
+(function(){
+  var slides=document.querySelectorAll('.hero-slide'),dots=document.querySelector('.hero-carousel-dots'),cur=0,timer;
+  slides.forEach(function(_,i){var d=document.createElement('button');d.className='dot'+(i===0?' active':'');d.setAttribute('aria-label','Slide '+(i+1));d.addEventListener('click',function(){goTo(i);});dots.appendChild(d);});
+  function load(n){var s=slides[n];if(s.dataset.bg&&!s.style.backgroundImage)s.style.backgroundImage="url('"+s.dataset.bg+"')";}
+  function goTo(n){slides[cur].classList.remove('active');dots.children[cur].classList.remove('active');cur=(n+slides.length)%slides.length;load(cur);slides[cur].classList.add('active');dots.children[cur].classList.add('active');load((cur+1)%slides.length);clearInterval(timer);timer=setInterval(function(){goTo(cur+1);},5000);}
+  load(1);timer=setInterval(function(){goTo(cur+1);},5000);
+})();
+</script>
 </body>
 </html>
