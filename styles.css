@@ -445,6 +445,7 @@ p  { line-height: 1.75; }
 .hero-bg {
   position: absolute;
   inset: 0;
+  z-index: -1;
   background:
     radial-gradient(ellipse at 15% 60%, rgba(204,0,0,0.13) 0%, transparent 55%),
     radial-gradient(ellipse at 85% 20%, rgba(30,51,81,0.6) 0%, transparent 55%),
