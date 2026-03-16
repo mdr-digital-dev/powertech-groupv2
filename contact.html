@@ -395,6 +395,29 @@
 
 <script src="nav.js"></script>
 <script>
+  // ── Custom toast notification ──────────────────────────────
+  function showToast(message, type) {
+    var existing = document.getElementById('ptg-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'ptg-toast';
+    var bg = type === 'error' ? '#c5000e' : '#166534';
+    var icon = type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle';
+    toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-20px);z-index:9999;background:' + bg + ';color:#fff;padding:14px 24px;border-radius:10px;font-size:0.92rem;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.28);opacity:0;transition:opacity 0.3s,transform 0.3s;max-width:90vw;text-align:center;';
+    toast.innerHTML = '<i class="fas ' + icon + '" style="font-size:1.1rem;flex-shrink:0;"></i>' + message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(-20px)';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 5000);
+  }
+
+  // ── Form submit ────────────────────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
@@ -416,12 +439,12 @@
         } else {
           btn.disabled = false;
           btn.innerHTML = originalText;
-          alert('There was a problem sending your message. Please call us at 800-784-1299.');
+          showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
         }
       } catch (err) {
         btn.disabled = false;
         btn.innerHTML = originalText;
-        alert('There was a problem sending your message. Please call us at 800-784-1299.');
+        showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
       }
     });
   }
