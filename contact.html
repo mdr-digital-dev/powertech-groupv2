@@ -101,6 +101,9 @@
   ]
 }
 </script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8HHEC5Z6RH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8HHEC5Z6RH');</script>
 </head>
 <body>
 
@@ -361,7 +364,7 @@
           <div style="font-size:1.4rem;font-weight:900;color:var(--navy);">5.0 ★</div>
           <div style="color:var(--gold);font-size:0.9rem;letter-spacing:2px;margin-bottom:4px;">★★★★★</div>
           <p style="font-size:0.8rem;color:var(--text-light);margin-bottom:12px;">6 verified Google Reviews</p>
-          <a href="https://maps.google.com/search/PowerTech+Group+of+Chicago" target="_blank" rel="noopener" class="btn btn-outline-navy btn-sm btn-full">Read Our Reviews</a>
+          <a href="https://www.google.com/maps/place/Powertech+Group/@42.0687477,-87.9665099,17z" target="_blank" rel="noopener" class="btn btn-outline-navy btn-sm btn-full">Read Our Reviews</a>
         </div>
       </div>
     </div>
@@ -369,16 +372,17 @@
     <!-- Map -->
     <div style="margin-top:48px;" class="fade-in">
       <h3 style="font-size:1.1rem;font-weight:700;color:var(--navy);margin-bottom:16px;"><i class="fas fa-map-marked-alt" style="color:var(--red);margin-right:8px;"></i> Our Location</h3>
-      <div class="map-container">
-        <!-- Replace with actual Google Maps embed iframe for 838 S. Arthur Ave, Arlington Heights, IL 60005 -->
-        <!-- <iframe src="https://www.google.com/maps/embed?pb=YOUR_EMBED_URL" allowfullscreen loading="lazy"></iframe> -->
-        <div class="map-placeholder-inner">
-          <i class="fas fa-map-marker-alt"></i>
-          <p><strong>838 S. Arthur Ave</strong><br>Arlington Heights, IL 60005</p>
-          <small style="display:block;margin-top:8px;">Replace this placeholder with a Google Maps embed iframe</small>
-          <a href="https://maps.google.com/?q=838+S.+Arthur+Ave,+Arlington+Heights,+IL+60005" target="_blank" rel="noopener" class="btn btn-accent btn-sm" style="margin-top:12px;">Open in Google Maps</a>
-        </div>
+      <div class="map-container" style="overflow:hidden;border-radius:12px;">
+        <iframe
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-87.9768%2C42.0716%2C-87.9568%2C42.0816&layer=mapnik&marker=42.0766%2C-87.9668"
+          width="100%" height="280" style="border:0;display:block;border-radius:12px;"
+          allowfullscreen loading="lazy" title="PowerTech Group Location">
+        </iframe>
       </div>
+      <a href="https://maps.google.com/?q=838+S+Arthur+Ave,+Arlington+Heights,+IL+60005&ll=42.0766,-87.9668" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:8px;margin-top:12px;background:var(--navy);color:#fff;font-size:0.82rem;font-weight:700;letter-spacing:0.06em;padding:10px 22px;border-radius:4px;text-decoration:none;">
+        <i class="fas fa-directions" style="color:var(--red);"></i> Get Directions on Google Maps
+      </a>
     </div>
   </div>
 </section>
@@ -399,6 +403,29 @@
 
 <script src="nav.js"></script>
 <script>
+  // ── Custom toast notification ──────────────────────────────
+  function showToast(message, type) {
+    var existing = document.getElementById('ptg-toast');
+    if (existing) existing.remove();
+    var toast = document.createElement('div');
+    toast.id = 'ptg-toast';
+    var bg = type === 'error' ? '#c5000e' : '#166534';
+    var icon = type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle';
+    toast.style.cssText = 'position:fixed;top:24px;left:50%;transform:translateX(-50%) translateY(-20px);z-index:9999;background:' + bg + ';color:#fff;padding:14px 24px;border-radius:10px;font-size:0.92rem;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:0 8px 32px rgba(0,0,0,0.28);opacity:0;transition:opacity 0.3s,transform 0.3s;max-width:90vw;text-align:center;';
+    toast.innerHTML = '<i class="fas ' + icon + '" style="font-size:1.1rem;flex-shrink:0;"></i>' + message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(function() {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateX(-50%) translateY(-20px)';
+      setTimeout(function() { toast.remove(); }, 300);
+    }, 5000);
+  }
+
+  // ── Form submit ────────────────────────────────────────────
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
@@ -420,12 +447,12 @@
         } else {
           btn.disabled = false;
           btn.innerHTML = originalText;
-          alert('There was a problem sending your message. Please call us at 800-784-1299.');
+          showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
         }
       } catch (err) {
         btn.disabled = false;
         btn.innerHTML = originalText;
-        alert('There was a problem sending your message. Please call us at 800-784-1299.');
+        showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
       }
     });
   }

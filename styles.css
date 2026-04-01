@@ -445,6 +445,7 @@ p  { line-height: 1.75; }
 .hero-bg {
   position: absolute;
   inset: 0;
+  z-index: -1;
   background:
     radial-gradient(ellipse at 15% 60%, rgba(204,0,0,0.13) 0%, transparent 55%),
     radial-gradient(ellipse at 85% 20%, rgba(30,51,81,0.6) 0%, transparent 55%),
@@ -1283,7 +1284,8 @@ select.form-control { cursor: pointer; }
   .nav-right               { gap: 8px; }
   .nav-right .btn-accent   { display: none; }
   .nav-right .btn-support  { display: none; }
-  .hamburger               { display: flex; }
+  .nav-phone               { display: none; }
+  .hamburger               { display: flex; margin-left: auto; }
   .mobile-menu             { display: block; }
   .dropdown-menu           { display: none; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
 
@@ -1471,9 +1473,10 @@ select.form-control { cursor: pointer; }
 /* === VIDEO EMBEDS === */
 .video-thumb-embed {
   position: relative;
-  padding: 0;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 */
+  aspect-ratio: 16 / 9;
+  height: auto;
+  padding-bottom: 0;
+  display: block;
   overflow: hidden;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
@@ -1488,6 +1491,43 @@ select.form-control { cursor: pointer; }
 }
 .video-thumb-embed .video-chip {
   display: none;
+}
+
+/* ── YouTube facade (thumbnail + play button) ── */
+.yt-facade {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  background: #000;
+}
+.yt-facade img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s;
+}
+.yt-facade:hover img { opacity: 0.85; }
+.yt-play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 68px; height: 48px;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+  transition: transform 0.2s, filter 0.2s;
+}
+.yt-facade:hover .yt-play {
+  transform: translate(-50%, -50%) scale(1.1);
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.7));
+}
+.yt-play svg { width: 100%; height: 100%; }
+.yt-facade.loaded { display: none; }
+.yt-facade + iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; border: none;
 }
 .video-mfr {
   display: inline-flex;
