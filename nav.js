@@ -134,27 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── CONTACT FORM HANDLER ───────────────────────────────────
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = contactForm.querySelector('[type="submit"]');
-      const orig = btn.innerHTML;
-      btn.innerHTML = '<i class="fas fa-check"></i> Message Sent — We\'ll be in touch!';
-      btn.style.background = '#059669';
-      btn.style.borderColor = '#059669';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = orig;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.disabled = false;
-        contactForm.reset();
-      }, 5000);
-    });
-  }
-
   // ── COUNTER ANIMATION (for stat numbers) ───────────────────
   function animateCounter(el) {
     const target = parseInt(el.dataset.target, 10);
