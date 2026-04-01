@@ -267,7 +267,7 @@ p  { line-height: 1.75; }
   background: var(--white);
   border-radius: var(--radius-xl);
   box-shadow: 0 24px 64px rgba(0,0,0,0.18);
-  min-width: 580px;
+  min-width: 700px;
   padding: 20px;
   opacity: 0;
   visibility: hidden;
@@ -283,7 +283,7 @@ p  { line-height: 1.75; }
 }
 .dropdown-inner {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 220px 1fr;
   gap: 16px;
 }
 .dropdown-promo {
@@ -307,7 +307,7 @@ p  { line-height: 1.75; }
 .dropdown-promo h4 { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 6px; }
 .dropdown-promo p  { font-size: 0.82rem; color: var(--text-medium); line-height: 1.6; }
 
-.dropdown-links { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: start; }
+.dropdown-links { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-content: start; }
 .dropdown-link {
   display: flex;
   align-items: flex-start;
