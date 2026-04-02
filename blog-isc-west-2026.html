@@ -51,7 +51,6 @@
   <link rel="stylesheet" href="styles.css?v=2" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    .blog-post { max-width: 760px; margin: 0 auto; padding: calc(var(--nav-height) + 20px) 24px 100px; }
     .blog-post .back-link { display:inline-flex;align-items:center;gap:8px;color:var(--red);font-weight:600;font-size:0.88rem;margin-bottom:40px;text-decoration:none; }
     .blog-post .back-link:hover { opacity:0.8; }
     .blog-post .post-label { font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--red);font-weight:700;margin-bottom:16px; }
@@ -79,6 +78,24 @@
     .share-btn { display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:0.82rem;font-weight:600;text-decoration:none;transition:opacity 0.2s; }
     .share-btn:hover { opacity:0.85; }
     .share-btn.linkedin { background:#0077b5;color:#fff; }
+
+    /* ── Hero Video Carousel ── */
+    .blog-hero { position:relative; width:100%; height:72vh; min-height:420px; max-height:640px; overflow:hidden; background:#000; margin-top:var(--nav-height); }
+    .blog-hero .carousel-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 0.7s ease; }
+    .blog-hero .carousel-slide.active { opacity:1; }
+    .blog-hero .hero-overlay { position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.1) 100%); z-index:2; pointer-events:none; }
+    .blog-hero .hero-content { position:absolute; bottom:0; left:0; right:0; z-index:3; padding:40px 48px; }
+    .blog-hero .hero-label { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--red); font-weight:700; background:rgba(255,255,255,0.12); display:inline-block; padding:4px 12px; border-radius:4px; margin-bottom:12px; }
+    .blog-hero .hero-title { font-size:clamp(1.6rem,4vw,2.6rem); font-weight:800; color:#fff; line-height:1.2; margin:0 0 8px; max-width:700px; }
+    .blog-hero .hero-sub { font-size:0.9rem; color:rgba(255,255,255,0.7); margin:0; }
+    .carousel-btn { position:absolute; top:50%; transform:translateY(-50%); z-index:4; background:rgba(255,255,255,0.15); border:none; color:#fff; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background 0.2s; backdrop-filter:blur(4px); }
+    .carousel-btn:hover { background:rgba(255,255,255,0.3); }
+    .carousel-btn.prev { left:20px; }
+    .carousel-btn.next { right:20px; }
+    .carousel-dots { position:absolute; bottom:20px; right:48px; z-index:4; display:flex; gap:8px; }
+    .carousel-dots .dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,0.4); cursor:pointer; transition:background 0.2s; }
+    .carousel-dots .dot.active { background:#fff; }
+    .blog-post { max-width:760px; margin:0 auto; padding:48px 24px 100px; }
   </style>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HHEC5Z6RH"></script>
@@ -117,6 +134,28 @@
   </div>
 </nav>
 
+<!-- ── Hero Video Carousel ── -->
+<div class="blog-hero" id="blogHero">
+  <video class="carousel-slide active" autoplay muted loop playsinline preload="auto">
+    <source src="videos/isc-west-2026-a.mp4" type="video/mp4" />
+  </video>
+  <video class="carousel-slide" muted loop playsinline preload="metadata">
+    <source src="videos/isc-west-2026-b.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-label">ISC West 2026 &nbsp;·&nbsp; Las Vegas</span>
+    <h1 class="hero-title">PowerTech at ISC West 2026</h1>
+    <p class="hero-sub">The security industry's largest show — what we saw and what's coming to Chicago businesses.</p>
+  </div>
+  <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous clip">&#8249;</button>
+  <button class="carousel-btn next" id="carouselNext" aria-label="Next clip">&#8250;</button>
+  <div class="carousel-dots" id="carouselDots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+  </div>
+</div>
+
 <div class="blog-post">
   <a href="blog.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
 
@@ -130,22 +169,6 @@
 
   <div class="callout">
     <p><strong>The defining theme of 2026:</strong> AI is no longer a feature — it's the platform. Natural language control of security systems, AI-powered video search, and adaptive deterrence responses are shipping today, not in a roadmap. And unified platforms crossing $1B in revenue are proving the market has consolidated around a handful of dominant players.</p>
-  </div>
-
-  <h2>From the Show Floor</h2>
-  <p>We brought cameras. Here's a look at what we captured walking the Venetian Expo.</p>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0 40px;">
-    <div style="border-radius:12px;overflow:hidden;background:#000;">
-      <video controls playsinline preload="metadata" style="width:100%;display:block;max-height:240px;object-fit:cover;">
-        <source src="videos/isc-west-2026-a.mp4" type="video/mp4" />
-      </video>
-    </div>
-    <div style="border-radius:12px;overflow:hidden;background:#000;">
-      <video controls playsinline preload="metadata" style="width:100%;display:block;max-height:240px;object-fit:cover;">
-        <source src="videos/isc-west-2026-b.mp4" type="video/mp4" />
-      </video>
-    </div>
   </div>
 
   <h2>The Vendors That Impressed Us Most</h2>
@@ -228,5 +251,30 @@
   <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2024 PowerTech Group of Chicago. All rights reserved.</p></div></div>
 </footer>
 <script src="nav.js"></script>
+<script>
+(function(){
+  const slides = document.querySelectorAll('#blogHero .carousel-slide');
+  const dots   = document.querySelectorAll('#carouselDots .dot');
+  let current  = 0;
+
+  function go(n) {
+    slides[current].classList.remove('active');
+    slides[current].pause();
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    slides[current].currentTime = 0;
+    slides[current].play();
+    dots[current].classList.add('active');
+  }
+
+  // Auto-advance when clip ends
+  slides.forEach((v, i) => v.addEventListener('ended', () => go(i + 1)));
+
+  document.getElementById('carouselPrev').addEventListener('click', () => go(current - 1));
+  document.getElementById('carouselNext').addEventListener('click', () => go(current + 1));
+  dots.forEach(d => d.addEventListener('click', () => go(+d.dataset.index)));
+})();
+</script>
 </body>
 </html>
