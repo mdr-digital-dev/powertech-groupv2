@@ -234,7 +234,8 @@
           <h2>Request a Free Quote</h2>
           <p class="form-desc">Fill out the form below and a member of our team will contact you within one business day. For urgent matters, please call us directly at <a href="tel:8007841299" style="color:var(--red);font-weight:600;">800-784-1299</a>.</p>
 
-          <form id="contactForm" action="https://formspree.io/f/helpdesk@powertechil.com" method="POST" novalidate>
+          <form id="contactForm" action="https://formspree.io/f/meevqvaq" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Form Submission — Power Tech Group">
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label req" for="firstName">First Name</label>
@@ -430,6 +431,10 @@
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+      if (!contactForm.checkValidity()) {
+        contactForm.reportValidity();
+        return;
+      }
       const btn = contactForm.querySelector('button[type="submit"]');
       const originalText = btn.innerHTML;
       btn.disabled = true;
