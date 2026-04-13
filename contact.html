@@ -448,7 +448,7 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><i class="fas fa-check-circle" style="font-size:3rem;color:#22c55e;margin-bottom:16px;display:block;"></i><h3 style="color:var(--navy);margin-bottom:8px;">Message Sent!</h3><p style="color:var(--text-medium);">Thank you for reaching out. A member of our team will contact you within one business day.</p></div>';
+          contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><i class="fas fa-check-circle" style="font-size:3rem;color:#22c55e;margin-bottom:16px;display:block;"></i><h3 style="color:var(--navy);margin-bottom:8px;">Message Sent!</h3><p style="color:var(--text-medium);">Thank you for reaching out. A member of our team will contact you shortly.</p></div>';
         } else {
           btn.disabled = false;
           btn.innerHTML = originalText;
