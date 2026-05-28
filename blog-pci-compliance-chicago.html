@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PCI DSS 4.0 Compliance for Chicago Businesses: What You Need to Know Now | PowerTech Group</title>
+  <meta name="description" content="PCI DSS 4.0 is here and the grace period is over. Learn what Chicago retailers, restaurants, and small businesses must do now to stay compliant and avoid fines." />
+  <link rel="canonical" href="https://powertechil.com/blog-pci-compliance-chicago" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta property="og:type"        content="article" />
+  <meta property="og:site_name"   content="PowerTech Group of Chicago" />
+  <meta property="og:url"         content="https://powertechil.com/blog-pci-compliance-chicago" />
+  <meta property="og:title"       content="PCI DSS 4.0 Compliance for Chicago Businesses: What You Need to Know Now" />
+  <meta property="og:description" content="PCI DSS 4.0 is fully enforceable and most small businesses aren't ready. Here's what changed, what's at stake, and what Chicago businesses should do right now." />
+  <meta property="og:image"       content="https://www.powertechil.com/logo-actual.png" />
+  <meta name="twitter:card"        content="summary" />
+  <meta name="twitter:title"       content="PCI DSS 4.0 Compliance for Chicago Businesses: What You Need to Know Now" />
+  <meta name="twitter:description" content="PCI DSS 4.0 is fully enforceable and most small businesses aren't ready. Here's what changed, what's at stake, and what Chicago businesses should do right now." />
+  <meta name="keywords"            content="PCI compliance Chicago, PCI DSS 4.0, PCI compliance small business, payment security Chicago, PCI assessment Chicago, PCI remediation, credit card security Chicago, PCI 4.0 requirements, Arlington Heights IT security" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness","SecurityService"],
+        "@id": "https://powertechil.com/#business",
+        "name": "PowerTech Group of Chicago",
+        "url": "https://powertechil.com",
+        "telephone": "800-784-1299",
+        "image": "https://powertechil.com/logo-actual.png",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "838 S. Arthur Ave",
+          "addressLocality": "Arlington Heights",
+          "addressRegion": "IL",
+          "postalCode": "60005",
+          "addressCountry": "US"
+        },
+        "areaServed": ["Chicago", "Arlington Heights", "Schaumburg", "Naperville", "Oak Park", "Evanston", "Rosemont", "Elk Grove Village"]
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "PCI DSS 4.0 Compliance for Chicago Businesses: What You Need to Know Now",
+        "description": "PCI DSS 4.0 is here and the grace period is over. Learn what Chicago retailers, restaurants, and small businesses must do now to stay compliant and avoid fines.",
+        "author": {"@type": "Organization", "name": "PowerTech Group of Chicago"},
+        "publisher": {"@id": "https://powertechil.com/#business"},
+        "datePublished": "2026-05-27",
+        "url": "https://powertechil.com/blog-pci-compliance-chicago"
+      }
+    ]
+  }
+  </script>
+  <style>
+    .blog-post { max-width: 760px; margin: 0 auto; padding: 80px 24px 100px; }
+    .blog-post .back-link { display:inline-flex;align-items:center;gap:8px;color:var(--red);font-weight:600;font-size:0.88rem;margin-bottom:40px;text-decoration:none; }
+    .blog-post .back-link:hover { opacity:0.8; }
+    .blog-post .post-label { font-size:0.72rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--red);font-weight:700;margin-bottom:16px; }
+    .blog-post h1 { font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;line-height:1.2;color:var(--navy);margin-bottom:20px; }
+    .blog-post .post-meta { font-size:0.82rem;color:#888;margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid #f0f0f0; }
+    .blog-post h2 { font-size:1.4rem;font-weight:700;color:var(--navy);margin:48px 0 16px; }
+    .blog-post p { font-size:1rem;line-height:1.8;color:#444;margin-bottom:20px; }
+    .blog-post ul { margin:0 0 24px 0;padding-left:24px; }
+    .blog-post ul li { font-size:1rem;line-height:1.75;color:#444;margin-bottom:8px; }
+    .blog-post .callout { background:var(--light-bg);border-left:4px solid var(--red);padding:20px 24px;border-radius:0 8px 8px 0;margin:32px 0; }
+    .blog-post .callout p { margin:0;color:var(--navy);font-weight:500; }
+    .blog-post .cta-block { background:var(--dark);color:#fff;padding:40px;border-radius:16px;text-align:center;margin-top:64px; }
+    .blog-post .cta-block h3 { font-size:1.5rem;font-weight:800;margin-bottom:12px; }
+    .blog-post .cta-block p { color:rgba(255,255,255,0.7);margin-bottom:24px; }
+  </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8HHEC5Z6RH"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8HHEC5Z6RH');</script>
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index" class="nav-logo"><img src="logo-actual.png" alt="PowerTech Group of Chicago" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li class="has-dropdown"><a href="safety-security">Safety &amp; Security <i class="fas fa-chevron-down"></i></a><div class="dropdown-menu"><div class="dropdown-inner"><div class="dropdown-promo"><div><span class="dropdown-promo-label">Safety &amp; Security</span><h4>Complete Protection Systems</h4><p>UL Listed security solutions engineered for commercial and industrial facilities.</p></div><a href="safety-security" class="btn btn-accent btn-sm">View All <i class="fas fa-arrow-right"></i></a></div><div class="dropdown-links"><a href="burglar-alarm" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-bell"></i></div><div class="dropdown-link-text"><strong>Burglar Alarm</strong><span>24/7 intrusion detection &amp; monitoring</span></div></a><a href="fire-protection" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-fire-extinguisher"></i></div><div class="dropdown-link-text"><strong>Fire Protection</strong><span>Addressable fire alarm systems</span></div></a><a href="security-cameras" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-video"></i></div><div class="dropdown-link-text"><strong>Security Cameras</strong><span>HD &amp; AI-powered surveillance</span></div></a><a href="access-control" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-id-card"></i></div><div class="dropdown-link-text"><strong>Access Control</strong><span>Credential &amp; biometric entry systems</span></div></a></div></div></div></li>
+      <li class="has-dropdown active"><a href="it-services">IT Services <i class="fas fa-chevron-down"></i></a><div class="dropdown-menu"><div class="dropdown-inner"><div class="dropdown-promo"><div><span class="dropdown-promo-label">IT Services</span><h4>Managed IT &amp; Network Solutions</h4><p>Enterprise-grade technology infrastructure for your business.</p></div><a href="it-services" class="btn btn-primary btn-sm">View All <i class="fas fa-arrow-right"></i></a></div><div class="dropdown-links"><a href="managed-it" class="dropdown-link"><div class="dropdown-link-icon blue"><i class="fas fa-server"></i></div><div class="dropdown-link-text"><strong>Managed IT</strong><span>Proactive IT management &amp; support</span></div></a><a href="wireless-network" class="dropdown-link"><div class="dropdown-link-icon blue"><i class="fas fa-wifi"></i></div><div class="dropdown-link-text"><strong>Wireless Network</strong><span>Enterprise Wi-Fi infrastructure</span></div></a><a href="cyber-security" class="dropdown-link"><div class="dropdown-link-icon blue"><i class="fas fa-shield-alt"></i></div><div class="dropdown-link-text"><strong>Cyber Security</strong><span>Threat protection &amp; monitoring</span></div></a><a href="pci-compliance" class="dropdown-link"><div class="dropdown-link-icon blue"><i class="fas fa-clipboard-check"></i></div><div class="dropdown-link-text"><strong>PCI Compliance</strong><span>Payment data security standards</span></div></a></div></div></div></li>
+      <li class="has-dropdown"><a href="resources">Resources <i class="fas fa-chevron-down"></i></a><div class="dropdown-menu simple"><a href="resources#customer" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-users"></i></div><div class="dropdown-link-text"><strong>Customer Manuals</strong></div></a><a href="resources#technician" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-tools"></i></div><div class="dropdown-link-text"><strong>Technician Resources</strong></div></a><a href="resources#videos" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-play-circle"></i></div><div class="dropdown-link-text"><strong>Videos</strong></div></a></div></li>
+      <li class="has-dropdown"><a href="about">About <i class="fas fa-chevron-down"></i></a><div class="dropdown-menu simple"><a href="about" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-building"></i></div><div class="dropdown-link-text"><strong>About Us</strong></div></a><a href="blog" class="dropdown-link"><div class="dropdown-link-icon"><i class="fas fa-newspaper"></i></div><div class="dropdown-link-text"><strong>Blog</strong></div></a></div></li>
+      <li><a href="contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="nav-phone"><i class="fas fa-phone"></i><a href="tel:8007841299">800-784-1299</a></div>
+      <a href="https://rmmus-powertechgroupofchicago.screenconnect.com/" target="_blank" rel="noopener" class="btn btn-support"><i class="fas fa-headset"></i> Remote Support</a>
+      <a href="contact" class="btn btn-accent">Get a Quote</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-item" data-has-submenu><div class="mobile-nav-link">Safety &amp; Security <i class="fas fa-chevron-down"></i></div><div class="mobile-submenu"><a href="burglar-alarm"><i class="fas fa-bell"></i> Burglar Alarm</a><a href="fire-protection"><i class="fas fa-fire-extinguisher"></i> Fire Protection</a><a href="security-cameras"><i class="fas fa-video"></i> Security Cameras</a><a href="access-control"><i class="fas fa-id-card"></i> Access Control</a></div></div>
+    <div class="mobile-nav-item" data-has-submenu><div class="mobile-nav-link">IT Services <i class="fas fa-chevron-down"></i></div><div class="mobile-submenu"><a href="managed-it"><i class="fas fa-server"></i> Managed IT</a><a href="wireless-network"><i class="fas fa-wifi"></i> Wireless Network</a><a href="cyber-security"><i class="fas fa-shield-alt"></i> Cyber Security</a><a href="pci-compliance"><i class="fas fa-clipboard-check"></i> PCI Compliance</a></div></div>
+    <div class="mobile-nav-item" data-has-submenu><div class="mobile-nav-link">About <i class="fas fa-chevron-down"></i></div><div class="mobile-submenu"><a href="about"><i class="fas fa-building"></i> About Us</a><a href="blog"><i class="fas fa-newspaper"></i> Blog</a></div></div>
+    <div class="mobile-nav-item"><a href="contact" class="mobile-nav-link">Contact</a></div>
+    <div class="mobile-menu-footer"><div class="mobile-phone"><i class="fas fa-phone"></i><a href="tel:8007841299">800-784-1299</a></div><a href="contact" class="btn btn-accent btn-full">Get a Free Quote</a></div>
+  </div>
+</nav>
+
+<div class="blog-post">
+  <a href="blog" class="back-link"><i class="fas fa-arrow-left"></i> Back to Blog</a>
+  <div class="post-label">PCI Compliance</div>
+  <h1>PCI DSS 4.0 Is Here. Most Chicago Small Businesses Aren't Ready.</h1>
+  <div class="post-meta">By PowerTech Group of Chicago &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 7 min read</div>
+
+  <p>If your business accepts credit or debit cards — and in 2026, that means virtually every business — there is a new set of rules governing how you handle that payment data. PCI DSS 4.0 officially replaced the previous standard (version 3.2.1) when the old framework sunset on March 31, 2025. The "future-dated" requirements that many businesses assumed they could deal with later? Those deadlines have passed too.</p>
+
+  <p>The grace period is over. PCI 4.0 is fully enforceable. And from what we see working with businesses across the Chicago metro area, most small and mid-sized companies have not caught up.</p>
+
+  <p>That is a problem — not just because of the fines, but because the threat environment that drove these changes is very real. Payment card fraud and data breaches are not slowing down. The PCI Security Standards Council updated the framework for good reason, and the consequences of ignoring it range from steep financial penalties to losing the ability to process card payments altogether.</p>
+
+  <p>Here is what changed, who it affects, and what you should do about it right now.</p>
+
+  <h2>What Changed from PCI DSS 3.2.1 to 4.0</h2>
+
+  <p>PCI DSS 4.0 is not a minor revision. It is a significant overhaul designed to address the way businesses actually operate today — with cloud services, remote workers, mobile payments, and increasingly sophisticated cyberattacks. Here are the changes that matter most:</p>
+
+  <p><strong>Multi-factor authentication (MFA) is required more broadly.</strong> Under 3.2.1, MFA was only required for remote access to the cardholder data environment. Under 4.0, MFA is required for all access to the cardholder data environment, including on-site access. If your staff logs into your POS system or payment processing back-end with just a username and password, you are out of compliance.</p>
+
+  <p><strong>Password requirements are significantly stricter.</strong> Minimum password length has increased from 7 characters to 12 characters (or 8 characters if the system cannot support 12). Passwords must include both numeric and alphabetic characters. This applies across all system components in scope for PCI.</p>
+
+  <p><strong>Targeted risk analysis is now mandatory.</strong> Instead of applying a one-size-fits-all control set, businesses must perform documented risk analyses for specific requirements — justifying the frequency of log reviews, the scope of vulnerability scans, and other security activities based on their actual risk profile.</p>
+
+  <p><strong>Enhanced monitoring and logging.</strong> PCI 4.0 requires automated mechanisms to detect and alert on security-relevant events. Manual log reviews are no longer sufficient on their own. You need systems that can flag anomalies in real time.</p>
+
+  <p><strong>Stricter network segmentation.</strong> If you rely on network segmentation to reduce your PCI scope (and most businesses should), that segmentation must now be verified through penetration testing at least every six months. Flat networks where your POS sits on the same subnet as your office workstations are a compliance failure waiting to happen.</p>
+
+  <p><strong>Authenticated vulnerability scanning.</strong> Internal vulnerability scans must now use authenticated scanning — meaning the scanner logs into systems with credentials to get a deeper, more accurate view of vulnerabilities. Surface-level scans no longer meet the requirement.</p>
+
+  <p><strong>Anti-phishing mechanisms are required.</strong> Businesses must deploy technical controls to detect and protect against phishing attacks. Security awareness training alone is not enough. You need email filtering, domain-based authentication (DMARC/DKIM/SPF), and other automated defenses in place.</p>
+
+  <div class="callout">
+    <p><strong>Bottom line:</strong> PCI 4.0 assumes that every business — regardless of size — faces real cybersecurity threats and needs real technical controls. The days of treating PCI as a checkbox exercise are over.</p>
+  </div>
+
+  <h2>Who This Affects (Hint: Probably You)</h2>
+
+  <p>There is a persistent misconception that PCI compliance is only a concern for large retailers or e-commerce companies processing millions of transactions. That is not how it works. PCI DSS applies to <strong>any organization that stores, processes, or transmits cardholder data</strong> — regardless of size or transaction volume.</p>
+
+  <p>That includes:</p>
+
+  <ul>
+    <li><strong>Retail stores</strong> — from a single boutique in Lincoln Park to a chain with locations across the suburbs</li>
+    <li><strong>Restaurants and bars</strong> — every POS terminal, every tableside payment device, every online ordering system</li>
+    <li><strong>Medical and dental offices</strong> — any practice that takes card payments for copays or services</li>
+    <li><strong>Professional services firms</strong> — law offices, accounting firms, consultancies that invoice and accept card payments</li>
+    <li><strong>Auto repair shops, salons, gyms, and service businesses</strong> — if you swipe, dip, or tap a card, PCI applies to you</li>
+  </ul>
+
+  <p>Small businesses are actually at greater risk in many ways. They tend to have less sophisticated <a href="cyber-security">cybersecurity</a> infrastructure, fewer IT resources, and less awareness of compliance obligations. Attackers know this, which is why small businesses are disproportionately targeted in payment card breaches.</p>
+
+  <h2>The Real Cost of Non-Compliance</h2>
+
+  <p>The penalties for PCI non-compliance are not theoretical. They are imposed by the card brands (Visa, Mastercard, American Express, Discover) through your acquiring bank, and they hit hard:</p>
+
+  <ul>
+    <li><strong>Monthly fines ranging from $5,000 to $100,000</strong> — depending on the severity and duration of non-compliance</li>
+    <li><strong>Increased transaction processing fees</strong> — your payment processor can raise your rates or impose surcharges</li>
+    <li><strong>Liability for fraud and breach costs</strong> — if a breach occurs and you were not compliant, you are on the hook for forensic investigation costs, card replacement costs, and fraudulent charges</li>
+    <li><strong>Loss of your merchant account</strong> — the card brands can revoke your ability to process card payments entirely, which for most businesses means you cannot operate</li>
+  </ul>
+
+  <p>And those are just the direct financial consequences. A data breach also brings reputational damage, potential lawsuits, and in some cases, regulatory action under Illinois data protection laws.</p>
+
+  <div class="callout">
+    <p><strong>Consider this:</strong> The average cost of a data breach for a small business is significantly higher relative to revenue than for a large enterprise. Many small businesses never fully recover from a serious breach.</p>
+  </div>
+
+  <h2>What Chicago Businesses Should Do Right Now</h2>
+
+  <p>If you have not addressed PCI 4.0 yet, you need to move. Here is a practical checklist to get started:</p>
+
+  <p><strong>1. Determine your PCI scope and SAQ level.</strong> Know exactly which systems, networks, and processes touch cardholder data. Understanding your scope is the foundation of everything else. Your Self-Assessment Questionnaire (SAQ) type determines which specific requirements apply to you.</p>
+
+  <p><strong>2. Implement multi-factor authentication.</strong> Everywhere it is required — which under 4.0 means any access to the cardholder data environment. If you are not using MFA on your POS management interface, your payment gateway, or your network access points, fix that immediately.</p>
+
+  <p><strong>3. Upgrade your password policies.</strong> Enforce 12-character minimum passwords with complexity requirements across all in-scope systems. Deploy a password manager if you have not already.</p>
+
+  <p><strong>4. Segment your network.</strong> Your payment processing systems should be on an isolated network segment, separate from your general business <a href="wireless-network">wireless network</a>, employee workstations, and guest Wi-Fi. This reduces your PCI scope and limits the blast radius if a breach occurs.</p>
+
+  <p><strong>5. Deploy anti-phishing controls.</strong> Implement email filtering, DMARC/DKIM/SPF authentication, and endpoint protection. Phishing is the number one attack vector for payment data theft, and PCI 4.0 explicitly requires technical defenses beyond just training.</p>
+
+  <p><strong>6. Set up continuous monitoring and alerting.</strong> You need automated log monitoring that can detect and flag suspicious activity. This does not have to mean a massive SIEM deployment — but you need something beyond hoping someone checks the logs once a month.</p>
+
+  <p><strong>7. Run authenticated vulnerability scans.</strong> Work with your IT provider or a qualified scanning vendor to perform authenticated internal scans and address findings promptly.</p>
+
+  <p><strong>8. Document your risk analyses.</strong> PCI 4.0 requires formal, documented risk analyses for multiple requirements. This is not optional, and "we looked at it and it seemed fine" does not qualify.</p>
+
+  <p><strong>9. Review your physical security.</strong> PCI compliance is not purely digital. Ensure that payment terminals are tamper-resistant, that <a href="security-cameras">security cameras</a> cover areas where cardholder data is handled, and that access to server rooms and network equipment is controlled.</p>
+
+  <p><strong>10. Get a professional assessment.</strong> If you are not sure where you stand, the single most valuable step you can take is to bring in a qualified team to assess your current environment against PCI 4.0 requirements and give you a clear remediation roadmap.</p>
+
+  <h2>How PowerTech Group Helps Chicago Businesses Stay Compliant</h2>
+
+  <p>PowerTech Group of Chicago has been providing security and IT services to businesses across the Chicago metro area since 1993. We are a UL Listed, licensed, and bonded security company based in Arlington Heights, and <a href="pci-compliance">PCI compliance</a> is one of our core service areas — not an afterthought bolted onto a general IT offering.</p>
+
+  <p>Here is what working with us looks like:</p>
+
+  <p><strong>PCI gap assessment.</strong> We evaluate your current environment against every applicable PCI DSS 4.0 requirement — identifying gaps, prioritizing risks, and giving you a clear, actionable remediation plan. No jargon-filled reports that sit on a shelf. A practical roadmap with specific steps and timelines.</p>
+
+  <p><strong>Remediation and implementation.</strong> We do not just tell you what is wrong and walk away. Our team handles the technical work — network segmentation, MFA deployment, firewall configuration, endpoint hardening, <a href="managed-it">managed IT</a> infrastructure, and everything else needed to close compliance gaps.</p>
+
+  <p><strong>Ongoing compliance management.</strong> PCI compliance is not a one-time project. It requires continuous monitoring, quarterly scanning, annual assessments, and policy updates as your business and the threat landscape evolve. We provide ongoing management so you stay compliant year after year without it consuming your internal resources.</p>
+
+  <p><strong>Integrated physical and cybersecurity.</strong> Because we also provide <a href="security-cameras">commercial security camera systems</a>, access control, and alarm monitoring, we can address PCI's physical security requirements as part of the same engagement. One provider, one relationship, complete coverage.</p>
+
+  <p>Whether you are a single-location restaurant that needs to verify your POS setup meets 4.0 standards or a multi-site retailer that needs a full compliance program, we have the expertise and the local presence to get it done.</p>
+
+  <div class="cta-block">
+    <h3>Find Out Where You Stand on PCI 4.0</h3>
+    <p>Get a no-obligation PCI gap assessment from a team that has been protecting Chicago businesses for over 30 years. We will tell you exactly where you are, what needs to change, and how to get there.</p>
+    <a href="contact" class="btn btn-accent btn-lg"><i class="fas fa-clipboard-check"></i> Schedule Your PCI Assessment</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container"><div class="footer-grid">
+    <div class="footer-brand"><div class="footer-logo"><img src="logo-actual.png" alt="PowerTech Group of Chicago" class="footer-logo-img" /></div><p>UL Listed #1624830-000. Licensed security and IT solutions for commercial clients throughout the Chicago metro area.</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><div class="footer-links"><a href="index">Home</a><a href="about">About Us</a><a href="blog">Blog</a><a href="access-control">Access Control</a><a href="contact">Contact Us</a></div></div>
+    <div class="footer-col"><h4>Contact Us</h4><div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><span>838 S. Arthur Ave<br>Arlington Heights, IL 60005</span></div><div class="footer-contact-row"><i class="fas fa-phone"></i><a href="tel:8007841299">800-784-1299</a></div></div>
+  </div></div>
+  <div class="footer-bottom"><div class="container footer-bottom-inner"><p>© 2026 PowerTech Group of Chicago. All rights reserved.</p></div></div>
+</footer>
+<script src="nav.js"></script>
+</body>
+</html>
