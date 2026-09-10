@@ -1,0 +1,286 @@
+name: Publish scheduled blog posts
+
+on:
+  # Fire Sprinkler — Oct 8, 2026 at 9am CT (14:00 UTC)
+  schedule:
+    - cron: '0 14 8 10 *'   # fire-sprinkler
+    - cron: '0 14 12 11 *'  # holiday-security
+    - cron: '0 14 10 12 *'  # year-end-security-review
+    - cron: '0 14 8 1 *'    # security-trends-2027
+  # Also allow manual trigger for testing
+  workflow_dispatch:
+    inputs:
+      post:
+        description: 'Which post to publish'
+        required: true
+        type: choice
+        options:
+          - fire-sprinkler
+          - holiday-security
+          - year-end-security-review
+          - security-trends-2027
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine which post to publish
+        id: which
+        run: |
+          MONTH=$(date -u +%-m)
+          DAY=$(date -u +%-d)
+
+          # Manual trigger overrides
+          if [ -n "${{ github.event.inputs.post }}" ]; then
+            echo "post=${{ github.event.inputs.post }}" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Schedule-based detection
+          if   [ "$MONTH" = "10" ] && [ "$DAY" = "8"  ]; then echo "post=fire-sprinkler"           >> $GITHUB_OUTPUT
+          elif [ "$MONTH" = "11" ] && [ "$DAY" = "12" ]; then echo "post=holiday-security"         >> $GITHUB_OUTPUT
+          elif [ "$MONTH" = "12" ] && [ "$DAY" = "10" ]; then echo "post=year-end-security-review" >> $GITHUB_OUTPUT
+          elif [ "$MONTH" = "1"  ] && [ "$DAY" = "8"  ]; then echo "post=security-trends-2027"     >> $GITHUB_OUTPUT
+          else
+            echo "No post scheduled for today. Exiting."
+            echo "post=none" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish fire-sprinkler
+        if: steps.which.outputs.post == 'fire-sprinkler'
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys
+
+          SLUG = 'fire-sprinkler-chicago'
+          CARD = """      <article style="position:relative;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.href='blog-fire-sprinkler-chicago'" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+                <span style="position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:4px 10px;border-radius:4px;"><i class="fas fa-bolt" style="margin-right:4px;"></i>New</span>
+                <div style="background:var(--red);height:6px;"></div>
+                <div style="padding:28px 24px;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                    <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);font-weight:700;">Fire Protection</span>
+                    <span style="font-size:0.72rem;color:#999;">October 2026</span>
+                  </div>
+                  <h2 style="font-size:1.2rem;font-weight:700;margin:0 0 12px;line-height:1.35;">Commercial Fire Sprinkler Systems Chicago: Code Requirements, Inspections, and When You Must Upgrade</h2>
+                  <p style="font-size:0.88rem;color:#666;line-height:1.65;margin-bottom:20px;">Illinois fire code requires sprinkler systems in most commercial buildings. Here's what triggers the requirement, what annual inspections must cover, and when an upgrade becomes legally mandatory.</p>
+                  <a href="blog-fire-sprinkler-chicago" style="color:var(--red);font-size:0.85rem;font-weight:600;">Read More &#x2192;</a>
+                </div>
+              </article>\n\n"""
+
+          with open('blog.html', 'r') as f:
+              html = f.read()
+
+          if SLUG in html:
+              print(f"Card for {SLUG} already present. Skipping.")
+              sys.exit(0)
+
+          # Remove "New" badge from the current first article
+          html = re.sub(
+              r'<span style="position:absolute;top:16px;right:16px;background:var\(--red\).*?</span>\n',
+              '', html, count=1, flags=re.DOTALL
+          )
+
+          # Insert new card before the first <article
+          html = html.replace(
+              '      <!-- PUBLISH: fire-sprinkler Oct 8 2026 -->\n',
+              CARD + '      <!-- PUBLISHED: fire-sprinkler Oct 8 2026 -->\n',
+              1
+          )
+
+          # Update homepage toast
+          toast_old = "blog-ransomware-recovery-chicago"
+          toast_new = "blog-fire-sprinkler-chicago"
+          toast_title_old = "Ransomware Response: What to Do in the First 24 Hours"
+          toast_title_new = "Commercial Fire Sprinkler Systems Chicago"
+          toast_sub_old = "How Chicago businesses can prepare and respond"
+          toast_sub_new = "Code requirements and when upgrades are mandatory"
+          icon_old = "fa-shield-alt"
+          icon_new = "fa-fire-extinguisher"
+          for old, new in [(toast_old, toast_new),(toast_title_old, toast_title_new),(toast_sub_old, toast_sub_new),(icon_old, icon_new)]:
+              html = html.replace(old, new, 1)
+
+          with open('blog.html', 'w') as f:
+              f.write(html)
+
+          with open('index.html', 'r') as f:
+              idx = f.read()
+          for old, new in [(toast_old, toast_new),(toast_title_old, toast_title_new),(toast_sub_old, toast_sub_new),(icon_old, icon_new)]:
+              idx = idx.replace(old, new, 1)
+          with open('index.html', 'w') as f:
+              f.write(idx)
+
+          print("Published fire-sprinkler card.")
+          PYEOF
+
+      - name: Publish holiday-security
+        if: steps.which.outputs.post == 'holiday-security'
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys
+
+          SLUG = 'holiday-security-chicago'
+          CARD = """      <article style="position:relative;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.href='blog-holiday-security-chicago'" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+                <span style="position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:4px 10px;border-radius:4px;"><i class="fas fa-bolt" style="margin-right:4px;"></i>New</span>
+                <div style="background:var(--red);height:6px;"></div>
+                <div style="padding:28px 24px;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                    <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);font-weight:700;">Security Tips</span>
+                    <span style="font-size:0.72rem;color:#999;">November 2026</span>
+                  </div>
+                  <h2 style="font-size:1.2rem;font-weight:700;margin:0 0 12px;line-height:1.35;">Holiday Security for Chicago Retail: Protect Your Business During the Most Vulnerable Weeks of the Year</h2>
+                  <p style="font-size:0.88rem;color:#666;line-height:1.65;margin-bottom:20px;">Retail theft and break-ins spike sharply during the holiday season. Here's what Chicago business owners can do right now to protect inventory, staff, and their bottom line.</p>
+                  <a href="blog-holiday-security-chicago" style="color:var(--red);font-size:0.85rem;font-weight:600;">Read More &#x2192;</a>
+                </div>
+              </article>\n\n"""
+
+          with open('blog.html', 'r') as f:
+              html = f.read()
+
+          if SLUG in html:
+              print(f"Card for {SLUG} already present. Skipping.")
+              sys.exit(0)
+
+          html = re.sub(
+              r'<span style="position:absolute;top:16px;right:16px;background:var\(--red\).*?</span>\n',
+              '', html, count=1, flags=re.DOTALL
+          )
+          html = html.replace(
+              '      <!-- PUBLISH: holiday-security Nov 12 2026 -->\n',
+              CARD + '      <!-- PUBLISHED: holiday-security Nov 12 2026 -->\n',
+              1
+          )
+
+          with open('blog.html', 'w') as f:
+              f.write(html)
+
+          with open('index.html', 'r') as f:
+              idx = f.read()
+          idx = idx.replace('blog-fire-sprinkler-chicago', 'blog-holiday-security-chicago', 1)
+          idx = idx.replace('Commercial Fire Sprinkler Systems Chicago', 'Holiday Security for Chicago Retail', 1)
+          idx = idx.replace('Code requirements and when upgrades are mandatory', 'Protect your business during the most vulnerable weeks', 1)
+          idx = idx.replace('fa-fire-extinguisher', 'fa-star', 1)
+          with open('index.html', 'w') as f:
+              f.write(idx)
+
+          print("Published holiday-security card.")
+          PYEOF
+
+      - name: Publish year-end-security-review
+        if: steps.which.outputs.post == 'year-end-security-review'
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys
+
+          SLUG = 'year-end-security-review-chicago'
+          CARD = """      <article style="position:relative;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.href='blog-year-end-security-review-chicago'" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+                <span style="position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:4px 10px;border-radius:4px;"><i class="fas fa-bolt" style="margin-right:4px;"></i>New</span>
+                <div style="background:var(--navy);height:6px;"></div>
+                <div style="padding:28px 24px;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                    <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);font-weight:700;">Managed IT</span>
+                    <span style="font-size:0.72rem;color:#999;">December 2026</span>
+                  </div>
+                  <h2 style="font-size:1.2rem;font-weight:700;margin:0 0 12px;line-height:1.35;">Year-End IT &amp; Security Checklist for Chicago Businesses: 12 Things to Do Before January</h2>
+                  <p style="font-size:0.88rem;color:#666;line-height:1.65;margin-bottom:20px;">December is the right time to audit your security systems, update IT infrastructure, and close compliance gaps. Here's the 12-point checklist we run with our Chicago clients every year.</p>
+                  <a href="blog-year-end-security-review-chicago" style="color:var(--red);font-size:0.85rem;font-weight:600;">Read More &#x2192;</a>
+                </div>
+              </article>\n\n"""
+
+          with open('blog.html', 'r') as f:
+              html = f.read()
+
+          if SLUG in html:
+              print(f"Card for {SLUG} already present. Skipping.")
+              sys.exit(0)
+
+          html = re.sub(
+              r'<span style="position:absolute;top:16px;right:16px;background:var\(--red\).*?</span>\n',
+              '', html, count=1, flags=re.DOTALL
+          )
+          html = html.replace(
+              '      <!-- PUBLISH: year-end-security-review Dec 10 2026 -->\n',
+              CARD + '      <!-- PUBLISHED: year-end-security-review Dec 10 2026 -->\n',
+              1
+          )
+
+          with open('blog.html', 'w') as f:
+              f.write(html)
+
+          with open('index.html', 'r') as f:
+              idx = f.read()
+          idx = idx.replace('blog-holiday-security-chicago', 'blog-year-end-security-review-chicago', 1)
+          idx = idx.replace('Holiday Security for Chicago Retail', 'Year-End IT &amp; Security Checklist', 1)
+          idx = idx.replace('Protect your business during the most vulnerable weeks', '12 things Chicago businesses should do before January', 1)
+          idx = idx.replace('fa-star', 'fa-clipboard-check', 1)
+          with open('index.html', 'w') as f:
+              f.write(idx)
+
+          print("Published year-end-security-review card.")
+          PYEOF
+
+      - name: Publish security-trends-2027
+        if: steps.which.outputs.post == 'security-trends-2027'
+        run: |
+          python3 - <<'PYEOF'
+          import re, sys
+
+          SLUG = 'security-trends-2027-chicago'
+          CARD = """      <article style="position:relative;background:#fff;border:1px solid #eee;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.05);cursor:pointer;transition:box-shadow 0.2s,transform 0.2s;" onclick="location.href='blog-security-trends-2027-chicago'" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow='0 2px 12px rgba(0,0,0,0.05)'">
+                <span style="position:absolute;top:16px;right:16px;background:var(--red);color:#fff;font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:4px 10px;border-radius:4px;"><i class="fas fa-bolt" style="margin-right:4px;"></i>New</span>
+                <div style="background:var(--red);height:6px;"></div>
+                <div style="padding:28px 24px;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+                    <span style="font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--red);font-weight:700;">Security Technology</span>
+                    <span style="font-size:0.72rem;color:#999;">January 2027</span>
+                  </div>
+                  <h2 style="font-size:1.2rem;font-weight:700;margin:0 0 12px;line-height:1.35;">Commercial Security in 2027: 6 Trends Reshaping How Chicago Businesses Protect Themselves</h2>
+                  <p style="font-size:0.88rem;color:#666;line-height:1.65;margin-bottom:20px;">From AI-powered threat detection to cloud-unified physical and cyber security, here's what 2027 brings — and what Chicago businesses should be doing now to stay ahead.</p>
+                  <a href="blog-security-trends-2027-chicago" style="color:var(--red);font-size:0.85rem;font-weight:600;">Read More &#x2192;</a>
+                </div>
+              </article>\n\n"""
+
+          with open('blog.html', 'r') as f:
+              html = f.read()
+
+          if SLUG in html:
+              print(f"Card for {SLUG} already present. Skipping.")
+              sys.exit(0)
+
+          html = re.sub(
+              r'<span style="position:absolute;top:16px;right:16px;background:var\(--red\).*?</span>\n',
+              '', html, count=1, flags=re.DOTALL
+          )
+          html = html.replace(
+              '      <!-- PUBLISH: security-trends-2027 Jan 8 2027 -->\n',
+              CARD + '      <!-- PUBLISHED: security-trends-2027 Jan 8 2027 -->\n',
+              1
+          )
+
+          with open('blog.html', 'w') as f:
+              f.write(html)
+
+          with open('index.html', 'r') as f:
+              idx = f.read()
+          idx = idx.replace('blog-year-end-security-review-chicago', 'blog-security-trends-2027-chicago', 1)
+          idx = idx.replace('Year-End IT &amp; Security Checklist', 'Commercial Security in 2027: 6 Trends to Know', 1)
+          idx = idx.replace('12 things Chicago businesses should do before January', "What's reshaping Chicago business security in 2027", 1)
+          idx = idx.replace('fa-clipboard-check', 'fa-chart-line', 1)
+          with open('index.html', 'w') as f:
+              f.write(idx)
+
+          print("Published security-trends-2027 card.")
+          PYEOF
+
+      - name: Commit and push
+        if: steps.which.outputs.post != 'none'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog.html index.html
+          git diff --cached --quiet || git commit -m "Publish scheduled post: ${{ steps.which.outputs.post }}"
+          git push
