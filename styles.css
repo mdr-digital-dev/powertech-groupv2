@@ -1184,6 +1184,10 @@ select.form-control { cursor: pointer; }
 .footer-contact-row i { color: var(--blue); width: 14px; margin-top: 3px; flex-shrink: 0; font-size: 0.8rem; }
 .footer-contact-row a, .footer-contact-row span { color: rgba(255,255,255,0.62); }
 .footer-contact-row a:hover { color: var(--white); }
+/* Address map link — matches phone/hours color; blue + underline on hover; no visited change */
+.footer-address:link,
+.footer-address:visited { color: rgba(255,255,255,0.62); text-decoration: none; }
+.footer-address:hover   { color: var(--blue); text-decoration: underline; }
 .footer-cert-row {
   display: flex; gap: 8px; flex-wrap: wrap;
   margin-top: 14px;

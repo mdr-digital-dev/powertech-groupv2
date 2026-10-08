@@ -9,13 +9,17 @@
   var EMBED_URL     = 'https://maps.google.com/maps?q=838+S+Arthur+Ave,+Arlington+Heights,+IL+60005&z=15&output=embed';
 
   document.addEventListener('DOMContentLoaded', function () {
-    // Fix any Google badge / review links
+    // Fix any Google badge / review links (NOT .footer-address — that goes to Maps)
     document.querySelectorAll('a.footer-google-badge, a[data-ptg-review]').forEach(function (el) {
       el.href = LEAVE_REVIEW;
     });
     // Fix any map embed iframes
     document.querySelectorAll('iframe[title="PowerTech Group Location"]').forEach(function (el) {
       el.src = EMBED_URL;
+    });
+    // Ensure footer address links point to view-on-maps (not review URL)
+    document.querySelectorAll('a.footer-address').forEach(function (el) {
+      el.href = VIEW_ON_MAPS;
     });
   });
 })();
