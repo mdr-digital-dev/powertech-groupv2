@@ -1,0 +1,92 @@
+{
+  "rating": 5.0,
+  "count": 8,
+  "reviewUrl": "https://g.page/r/CfpF4Kfs5e-NEBM/review",
+  "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Power+Tech+Group+of+Chicago+838+S+Arthur+Ave+Arlington+Heights+IL+60005",
+  "reviews": [
+    {
+      "name": "Michael Rodriguez",
+      "initial": "M",
+      "avatarClass": "av-a",
+      "rating": 5,
+      "date": "4 months ago",
+      "text": "I needed security cameras, servers, and all my devices connected at my grocery store (produce world) and Power Tech Group took care of everything. Mick went above and beyond — he made sure the whole setup was done right and didn't leave until everything was working perfectly. Great customer service all around. If you need someone reliable for your business tech needs, these are the guys to call. Highly recommend.",
+      "featured": true
+    },
+    {
+      "name": "Ava Roper",
+      "initial": "A",
+      "avatarClass": "av-b",
+      "rating": 5,
+      "date": "4 months ago",
+      "text": "Mick is a true expert in the security space and did an outstanding job installing IP cameras at my house and small businesses. He was able to wire up the home, and provide a clean install with no issues. The system works great and I can access it on my phone at any time. Couldn't recommend this business more for any security needs!",
+      "featured": true
+    },
+    {
+      "name": "Shailyn Ortiz",
+      "initial": "S",
+      "avatarClass": "av-d",
+      "rating": 5,
+      "date": "5 months ago",
+      "text": "Great camera and burglary services",
+      "featured": true
+    },
+    {
+      "name": "Sammy",
+      "initial": "S",
+      "avatarClass": "av-c",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "The company went above and beyond when installing our security cameras. I'm very pleased with the overall experience, and will recommend PowerTech to all my friends that run small businesses.",
+      "featured": true
+    },
+    {
+      "name": "Nicole Perry",
+      "initial": "N",
+      "avatarClass": "av-e",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "Excellent service and pleasure to deal with 😃👌👌",
+      "featured": true
+    },
+    {
+      "name": "Lillie Hampton",
+      "initial": "L",
+      "avatarClass": "av-f",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "Yep got Everything I Wanted.",
+      "featured": true
+    },
+    {
+      "name": "Marjorie Flowers",
+      "initial": "M",
+      "avatarClass": "av-b",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "Fast delivery, amazing price with discount. Very happy.",
+      "featured": false,
+      "_note": "Review content appears to be for a different business (retail). Not displayed."
+    },
+    {
+      "name": "Edmund Bryant",
+      "initial": "E",
+      "avatarClass": "av-c",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "Good stock levels, heaps of parking.",
+      "featured": false,
+      "_note": "Review content appears to be for a different business (retail). Not displayed."
+    },
+    {
+      "name": "alice yiki",
+      "initial": "A",
+      "avatarClass": "av-d",
+      "rating": 5,
+      "date": "5 years ago",
+      "text": "Fantastic parking , wonderful staff..",
+      "featured": false,
+      "_note": "Review content appears to be for a different business (retail). Not displayed."
+    }
+  ]
+}

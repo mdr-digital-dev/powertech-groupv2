@@ -69,7 +69,7 @@
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5.0",
-    "reviewCount": "6",
+    "reviewCount": "8",
     "bestRating": "5"
   },
   "hasCredential": [
@@ -466,6 +466,108 @@
       </a>
     </div>
 
+    <!-- ── Review Cards ── -->
+    <div class="reviews-grid fade-in">
+
+      <!-- Review 1: Michael Rodriguez -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-a">M</div>
+          <div class="reviewer-info">
+            <strong>Michael Rodriguez</strong>
+            <span>2 reviews</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text is-clamped">"I needed security cameras, servers, and all my devices connected at my grocery store (produce world) and Power Tech Group took care of everything. Mick went above and beyond — he made sure the whole setup was done right and didn't leave until everything was working perfectly. Great customer service all around. If you need someone reliable for your business tech needs, these are the guys to call. Highly recommend."</p>
+        <button class="review-read-more" aria-expanded="false">Read more</button>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>4 months ago · via Google</span></div>
+      </div>
+
+      <!-- Review 2: Ava Roper -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-b">A</div>
+          <div class="reviewer-info">
+            <strong>Ava Roper</strong>
+            <span>1 review</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text is-clamped">"Mick is a true expert in the security space and did an outstanding job installing IP cameras at my house and small businesses. He was able to wire up the home, and provide a clean install with no issues. The system works great and I can access it on my phone at any time. Couldn't recommend this business more for any security needs!"</p>
+        <button class="review-read-more" aria-expanded="false">Read more</button>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>4 months ago · via Google</span></div>
+      </div>
+
+      <!-- Review 3: Shailyn Ortiz -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-d">S</div>
+          <div class="reviewer-info">
+            <strong>Shailyn Ortiz</strong>
+            <span>Local Guide · 13 reviews</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Great camera and burglary services"</p>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>5 months ago · via Google</span></div>
+      </div>
+
+      <!-- Review 4: Sammy -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-c">S</div>
+          <div class="reviewer-info">
+            <strong>Sammy</strong>
+            <span>Local Guide · 34 reviews</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"The company went above and beyond when installing our security cameras. I'm very pleased with the overall experience, and will recommend PowerTech to all my friends that run small businesses."</p>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>5 years ago · via Google</span></div>
+      </div>
+
+      <!-- Review 5: Nicole Perry -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-e">N</div>
+          <div class="reviewer-info">
+            <strong>Nicole Perry</strong>
+            <span>3 reviews</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Excellent service and pleasure to deal with 😃👌👌"</p>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>5 years ago · via Google</span></div>
+      </div>
+
+      <!-- Review 6: Lillie Hampton -->
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="reviewer-avatar av-f">L</div>
+          <div class="reviewer-info">
+            <strong>Lillie Hampton</strong>
+            <span>3 reviews</span>
+          </div>
+          <i class="fab fa-google review-google-icon"></i>
+        </div>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Yep got Everything I Wanted."</p>
+        <div class="review-source"><i class="fab fa-google" style="color:#4285f4;"></i> <span>5 years ago · via Google</span></div>
+      </div>
+
+    </div>
+
+    <!-- ── Reviews from Google note ── -->
+    <p style="text-align:center; font-size:0.78rem; color:var(--text-light); margin:-16px 0 24px;">
+      Reviews sourced from <a href="https://www.google.com/maps/search/?api=1&query=Power+Tech+Group+of+Chicago+838+S+Arthur+Ave+Arlington+Heights+IL+60005" target="_blank" rel="noopener" style="color:inherit;">Google Maps</a>
+    </p>
+
     <!-- ── Leave a Review CTA ── -->
     <div class="reviews-cta fade-in">
       <a href="https://g.page/r/CfpF4Kfs5e-NEBM/review" target="_blank" rel="noopener" class="btn btn-accent" style="background:#4285F4;border-color:#4285F4;color:#fff;font-weight:700;">
@@ -658,6 +760,20 @@
 
 <script src="nav.js"></script>
 <script src="site-config.js"></script>
+<script>
+// Review "Read more" toggle
+document.querySelectorAll('.review-read-more').forEach(function(btn) {
+  var text = btn.previousElementSibling;
+  // Only show button if text is actually clamped
+  if (text.scrollHeight <= text.clientHeight) { btn.style.display = 'none'; return; }
+  btn.addEventListener('click', function() {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    text.classList.toggle('is-clamped', expanded);
+    btn.setAttribute('aria-expanded', String(!expanded));
+    btn.textContent = expanded ? 'Read more' : 'Show less';
+  });
+});
+</script>
 <script>
 (function(){
   var slides=document.querySelectorAll('.hero-slide'),dots=document.querySelector('.hero-carousel-dots'),cur=0,timer;
