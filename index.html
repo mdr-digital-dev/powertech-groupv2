@@ -50,12 +50,7 @@
     "postalCode": "60005",
     "addressCountry": "US"
   },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 42.0883,
-    "longitude": -87.9806
-  },
-  "openingHoursSpecification": {
+        "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
       "Monday",
@@ -419,20 +414,36 @@
   </div>
 </section>
 
-<!-- ══════════════════ COVERAGE MAP ══════════════════ -->
-<section class="section coverage-section" id="coverage">
+<!-- ══════════════════ SERVICE AREA ══════════════════ -->
+<section class="section" id="service-area" style="background:var(--navy);padding:60px 0;">
   <div class="container">
-    <div class="section-header center fade-in">
-      <span class="section-label coverage-label">Nationwide Reach</span>
-      <h2 class="section-title coverage-title">Clients Across the Country</h2>
-      <p class="section-subtitle coverage-subtitle">From Chicago headquarters to clients coast to coast — PowerTech Group delivers world-class security and IT infrastructure wherever you need it.</p>
+    <div class="section-header center fade-in" style="margin-bottom:32px;">
+      <span class="section-label" style="color:var(--red);">Local Experts</span>
+      <h2 class="section-title" style="color:#fff;">Proudly Serving the Greater Chicago Area</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto;">Licensed, bonded, and UL Listed — PowerTech Group delivers commercial security, fire protection, and IT services across Chicago and its suburbs.</p>
     </div>
-    <div class="coverage-map-wrap fade-in">
-      <div id="ptg-map"></div>
+    <div class="fade-in" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px;margin:0 auto;">
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Arlington Heights</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Chicago</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Schaumburg</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Naperville</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Evanston</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Oak Park</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Downers Grove</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Elgin</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Joliet</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Aurora</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Cicero</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Waukegan</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Palatine</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Des Plaines</span>
+      <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);padding:8px 18px;border-radius:4px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;">Orland Park</span>
+    </div>
+    <div class="fade-in" style="text-align:center;margin-top:32px;">
+      <a href="contact" style="display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-size:0.88rem;font-weight:700;letter-spacing:0.06em;padding:12px 28px;border-radius:4px;text-decoration:none;text-transform:uppercase;">Request a Site Assessment</a>
     </div>
   </div>
 </section>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
 <!-- ══════════════════ GOOGLE REVIEWS ══════════════════ -->
 <section class="section reviews-section">
@@ -445,19 +456,19 @@
 
     <!-- ── Overall Rating Badge ── -->
     <div style="text-align:center; margin-bottom: 36px;">
-      <a href="https://www.google.com/maps/place/Power+Tech+Group+of+Chicago/@42.0906,-87.9806,17z/" target="_blank" rel="noopener" class="google-overall-badge" style="text-decoration:none;">
+      <a href="https://g.page/r/CfpF4Kfs5e-NEBM/review" target="_blank" rel="noopener" class="google-overall-badge" style="text-decoration:none;">
         <span class="google-g">G</span>
         <div class="google-rating-text">
           <strong>5.0</strong>
           <span class="stars">★★★★★</span>
-          <small>Based on 6 Google Reviews</small>
+          <small>Based on 8 Google Reviews</small>
         </div>
       </a>
     </div>
 
     <!-- ── Leave a Review CTA ── -->
     <div class="reviews-cta fade-in">
-      <a href="https://www.google.com/maps/place/Power+Tech+Group+of+Chicago/@42.0906,-87.9806,17z/" target="_blank" rel="noopener" class="btn btn-accent" style="background:#4285F4;border-color:#4285F4;color:#fff;font-weight:700;">
+      <a href="https://g.page/r/CfpF4Kfs5e-NEBM/review" target="_blank" rel="noopener" class="btn btn-accent" style="background:#4285F4;border-color:#4285F4;color:#fff;font-weight:700;">
         <i class="fab fa-google"></i> Read &amp; Leave a Review
       </a>
     </div>
@@ -586,10 +597,10 @@
           <img src="logo-actual.png" alt="PowerTech Group of Chicago" class="footer-logo-img" />
         </div>
         <p>A Licensed Security Company and UL Listed provider delivering safety, security, and IT solutions for commercial and industrial clients throughout the Chicago metropolitan area.</p>
-        <a href="https://www.google.com/maps/place/Power+Tech+Group+of+Chicago/@42.0906,-87.9806,17z/" target="_blank" class="footer-google-badge">
+        <a href="https://g.page/r/CfpF4Kfs5e-NEBM/review" target="_blank" class="footer-google-badge">
           <span class="g-text">Google</span>
           <span class="stars">★★★★★</span>
-          <span class="rating">5.0 · 6 Reviews</span>
+          <span class="rating">5.0 · 8 Reviews</span>
         </a>
       </div>
       <!-- Quick Links -->
@@ -621,7 +632,7 @@
       <!-- Contact -->
       <div class="footer-col">
         <h4>Contact Us</h4>
-        <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><a href="https://www.google.com/maps/place/Power+Tech+Group+of+Chicago/@42.0906,-87.9806,17z/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">838 S. Arthur Ave<br>Arlington Heights, IL 60005</a></div>
+        <div class="footer-contact-row"><i class="fas fa-map-marker-alt"></i><a href="https://g.page/r/CfpF4Kfs5e-NEBM/review" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">838 S. Arthur Ave<br>Arlington Heights, IL 60005</a></div>
         <div class="footer-contact-row"><i class="fas fa-phone"></i><a href="tel:8007841299">800-784-1299</a></div>
         <div class="footer-contact-row"><i class="fas fa-clock"></i><span>Mon–Fri: 8am–5pm<br>24/7 Emergency Available</span></div>
         <div class="footer-cert-row">
@@ -646,25 +657,7 @@
 </footer>
 
 <script src="nav.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script>
-(function(){
-  var map=L.map('ptg-map',{zoomControl:false,scrollWheelZoom:false,attributionControl:false,minZoom:2,maxZoom:10});
-  map.fitBounds([[24.5,-125.0],[49.5,-66.5]],{padding:[16,16]});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{maxZoom:18}).addTo(map);
-  var pts=[
-    [42.0651,-87.9370,'HQ — Arlington Heights, IL'],[41.8827,-87.6233,'Chicago, IL'],[41.8697,-87.7200,'Cicero, IL'],[42.0112,-87.8600,'Schaumburg, IL'],
-    [40.7128,-74.0060,'New York, NY'],[42.3601,-71.0589,'Boston, MA'],[39.9526,-75.1652,'Philadelphia, PA'],[38.9072,-77.0369,'Washington, DC'],
-    [33.7490,-84.3880,'Atlanta, GA'],[25.7617,-80.1918,'Miami, FL'],[27.9506,-82.4572,'Tampa, FL'],
-    [29.7604,-95.3698,'Houston, TX'],[30.2672,-97.7431,'Austin, TX'],[32.7767,-96.7970,'Dallas, TX'],
-    [39.0997,-94.5786,'Kansas City, MO'],[44.9778,-93.2650,'Minneapolis, MN'],[41.4993,-81.6944,'Cleveland, OH'],[39.7684,-86.1581,'Indianapolis, IN'],
-    [34.0522,-118.2437,'Los Angeles, CA'],[37.7749,-122.4194,'San Francisco, CA'],[47.6062,-122.3321,'Seattle, WA'],
-    [33.4484,-112.0740,'Phoenix, AZ'],[39.7392,-104.9903,'Denver, CO'],[36.1699,-115.1398,'Las Vegas, NV']
-  ];
-  var icon=L.divIcon({className:'',html:'<div style="width:10px;height:10px;border-radius:50%;background:#E5333B;border:2px solid rgba(255,255,255,0.5);box-shadow:0 0 8px #E5333B99;"></div>',iconSize:[10,10],iconAnchor:[5,5]});
-  pts.forEach(function(p){L.marker([p[0],p[1]],{icon:icon}).bindPopup('<strong>'+p[2]+'</strong>',{className:'ptg-popup'}).addTo(map);});
-})();
-</script>
+<script src="site-config.js"></script>
 <script>
 (function(){
   var slides=document.querySelectorAll('.hero-slide'),dots=document.querySelector('.hero-carousel-dots'),cur=0,timer;
