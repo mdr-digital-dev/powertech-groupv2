@@ -105,6 +105,7 @@
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-8HHEC5Z6RH"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-8HHEC5Z6RH');</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -235,8 +236,10 @@
           <h2>Request a Free Quote</h2>
           <p class="form-desc">Fill out the form below and a member of our team will contact you within one business day. For urgent matters, please call us directly at <a href="tel:8007841299" style="color:var(--red);font-weight:600;">800-784-1299</a>.</p>
 
-          <form id="contactForm" action="https://formspree.io/f/meevqvaq" method="POST">
+          <form id="contactForm" action="/api/contact" method="POST">
             <input type="hidden" name="_subject" value="New Contact Form Submission — Power Tech Group">
+            <!-- Honeypot: filled by bots, ignored by humans -->
+            <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label req" for="firstName">First Name</label>
@@ -295,6 +298,9 @@
               <label for="urgent" style="font-size:0.85rem;color:var(--text-medium);cursor:pointer;">This is an urgent request — please contact me as soon as possible.</label>
             </div>
 
+            <!-- Cloudflare Turnstile — paste your site key below -->
+            <div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_HERE" data-theme="light" style="margin-bottom:16px;"></div>
+
             <button type="submit" class="btn btn-accent btn-lg btn-full">
               <i class="fas fa-paper-plane"></i> Send Message
             </button>
@@ -312,7 +318,7 @@
             <div class="contact-detail-icon"><i class="fas fa-building"></i></div>
             <div>
               <strong>Office Address</strong>
-              <p>838 S. Arthur Ave<br>Arlington Heights, IL 60005</p>
+              <p><a href="https://www.google.com/maps/search/?api=1&query=Power+Tech+Group+of+Chicago+838+S+Arthur+Ave+Arlington+Heights+IL+60005" target="_blank" rel="noopener" style="text-decoration:underline;">838 S. Arthur Ave<br>Arlington Heights, IL 60005 <i class="fas fa-external-link-alt" style="font-size:0.7em;margin-left:3px;opacity:0.7;vertical-align:middle;"></i></a></p>
             </div>
           </div>
           <div class="contact-detail">
@@ -443,23 +449,30 @@
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-      const data = new FormData(contactForm);
+      // Build JSON payload from form fields
+      const fd = new FormData(contactForm);
+      const payload = {};
+      fd.forEach(function(v, k) { payload[k] = v; });
+
       try {
-        const res = await fetch(contactForm.action, {
+        const res = await fetch('/api/contact', {
           method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
         });
-        if (res.ok) {
+        const data = await res.json().catch(function() { return {}; });
+        if (res.ok && data.ok) {
           contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><i class="fas fa-check-circle" style="font-size:3rem;color:#22c55e;margin-bottom:16px;display:block;"></i><h3 style="color:var(--navy);margin-bottom:8px;">Message Sent!</h3><p style="color:var(--text-medium);">Thank you for reaching out. A member of our team will contact you shortly.</p></div>';
         } else {
           btn.disabled = false;
           btn.innerHTML = originalText;
+          if (typeof turnstile !== 'undefined') turnstile.reset();
           showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
         }
       } catch (err) {
         btn.disabled = false;
         btn.innerHTML = originalText;
+        if (typeof turnstile !== 'undefined') turnstile.reset();
         showToast('There was a problem sending your message. Please call us at 800-784-1299.', 'error');
       }
     });
