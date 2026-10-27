@@ -236,10 +236,10 @@
           <h2>Request a Free Quote</h2>
           <p class="form-desc">Fill out the form below and a member of our team will contact you within one business day. For urgent matters, please call us directly at <a href="tel:8007841299" style="color:var(--red);font-weight:600;">800-784-1299</a>.</p>
 
-          <form id="contactForm" action="/api/contact" method="POST">
+          <form id="contactForm" action="https://formspree.io/f/meevqvaq" method="POST">
             <input type="hidden" name="_subject" value="New Contact Form Submission — Power Tech Group">
             <!-- Honeypot: filled by bots, ignored by humans -->
-            <input type="text" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;" />
             <div class="form-row">
               <div class="form-group">
                 <label class="form-label req" for="firstName">First Name</label>
@@ -298,8 +298,7 @@
               <label for="urgent" style="font-size:0.85rem;color:var(--text-medium);cursor:pointer;">This is an urgent request — please contact me as soon as possible.</label>
             </div>
 
-            <!-- Cloudflare Turnstile — paste your site key below -->
-            <div class="cf-turnstile" data-sitekey="TURNSTILE_SITE_KEY_HERE" data-theme="light" style="margin-bottom:16px;"></div>
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFodPl_Pve_XgCGZ" data-theme="light" style="margin-bottom:16px;"></div>
 
             <button type="submit" class="btn btn-accent btn-lg btn-full">
               <i class="fas fa-paper-plane"></i> Send Message
@@ -449,19 +448,14 @@
       btn.disabled = true;
       btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-      // Build JSON payload from form fields
-      const fd = new FormData(contactForm);
-      const payload = {};
-      fd.forEach(function(v, k) { payload[k] = v; });
-
+      const data = new FormData(contactForm);
       try {
-        const res = await fetch('/api/contact', {
+        const res = await fetch(contactForm.action, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: data,
+          headers: { 'Accept': 'application/json' }
         });
-        const data = await res.json().catch(function() { return {}; });
-        if (res.ok && data.ok) {
+        if (res.ok) {
           contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><i class="fas fa-check-circle" style="font-size:3rem;color:#22c55e;margin-bottom:16px;display:block;"></i><h3 style="color:var(--navy);margin-bottom:8px;">Message Sent!</h3><p style="color:var(--text-medium);">Thank you for reaching out. A member of our team will contact you shortly.</p></div>';
         } else {
           btn.disabled = false;
