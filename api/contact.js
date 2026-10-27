@@ -1,11 +1,11 @@
 // Vercel Node.js serverless function — /api/contact
-// Verifies Cloudflare Turnstile, validates input, then proxies to Formspree.
-// The Formspree endpoint is never exposed to the browser.
 //
-// Required Vercel env vars (Production + Preview):
-//   TURNSTILE_SECRET_KEY  — from Cloudflare Turnstile dashboard
-//   FORMSPREE_ENDPOINT    — full Formspree POST URL (e.g. https://formspree.io/f/xxxxxxxx)
-//                           Create a NEW Formspree form and disable the old one to revoke the bots' ID.
+// TURNSTILE_ENABLED=true  → full Cloudflare Turnstile verification + new Formspree form
+// TURNSTILE_ENABLED=false (or missing) → bypass Turnstile, forward to FORMSPREE_FALLBACK
+//
+// Required env vars when TURNSTILE_ENABLED=true:
+//   TURNSTILE_SECRET_KEY  — Cloudflare Turnstile secret key
+//   FORMSPREE_ENDPOINT    — new Formspree POST URL
 
 const ALLOWED_HOSTS = [
   'powertechil.com',
@@ -13,6 +13,10 @@ const ALLOWED_HOSTS = [
   'cctvillinois.com',
   'www.cctvillinois.com'
 ];
+
+// Fallback endpoint used when TURNSTILE_ENABLED is not yet set.
+// Replaced once the new form + secret key are live.
+const FORMSPREE_FALLBACK = 'https://formspree.io/f/meevqvaq';
 
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -23,36 +27,40 @@ module.exports = async function handler(req, res) {
 
   // ── Honeypot: bots fill hidden fields, humans don't ──────────────────────
   if (body.company_website && body.company_website.trim() !== '') {
-    // Silently drop — return success so bots think it worked
     return res.status(200).json({ ok: true });
   }
 
-  // ── Turnstile server-side verification ───────────────────────────────────
-  const token = body['cf-turnstile-response'];
-  if (!token) {
-    return res.status(403).json({ ok: false, error: 'Human verification required' });
-  }
+  const turnstileEnabled = process.env.TURNSTILE_ENABLED === 'true';
+  const formspreeEndpoint = process.env.FORMSPREE_ENDPOINT || FORMSPREE_FALLBACK;
 
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  // ── Turnstile verification (only when enabled) ───────────────────────────
+  if (turnstileEnabled) {
+    const token = body['cf-turnstile-response'];
+    if (!token) {
+      return res.status(403).json({ ok: false, error: 'Human verification required' });
+    }
 
-  let verifyData;
-  try {
-    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: process.env.TURNSTILE_SECRET_KEY,
-        response: token,
-        remoteip: ip
-      }).toString()
-    });
-    verifyData = await verifyRes.json();
-  } catch {
-    return res.status(503).json({ ok: false, error: 'Verification service unavailable' });
-  }
+    const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
 
-  if (!verifyData.success || !ALLOWED_HOSTS.includes(verifyData.hostname)) {
-    return res.status(403).json({ ok: false, error: 'Verification failed' });
+    let verifyData;
+    try {
+      const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY,
+          response: token,
+          remoteip: ip
+        }).toString()
+      });
+      verifyData = await verifyRes.json();
+    } catch {
+      return res.status(503).json({ ok: false, error: 'Verification service unavailable' });
+    }
+
+    if (!verifyData.success || !ALLOWED_HOSTS.includes(verifyData.hostname)) {
+      return res.status(403).json({ ok: false, error: 'Verification failed' });
+    }
   }
 
   // ── Field validation ─────────────────────────────────────────────────────
@@ -69,10 +77,10 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ ok: false, error: 'Message too long' });
   }
 
-  // ── Forward to Formspree (server-side — endpoint never reaches the browser) ──
+  // ── Forward to Formspree ─────────────────────────────────────────────────
   let fRes;
   try {
-    fRes = await fetch(process.env.FORMSPREE_ENDPOINT, {
+    fRes = await fetch(formspreeEndpoint, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
