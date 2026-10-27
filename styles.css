@@ -352,6 +352,8 @@ p  { line-height: 1.75; }
 .nav-phone i { color: var(--red); font-size: 0.8rem; }
 .nav-phone a { color: var(--white); font-weight: 600; font-size: 0.9rem; letter-spacing: -0.2px; }
 .nav-phone a:hover { color: var(--blue); }
+.nav-phone-num { font-weight: 600; font-size: 0.9rem; color: var(--white); letter-spacing: -0.2px; }
+.btn-text-short { display: none; }
 
 /* Hamburger */
 .hamburger {
@@ -1288,28 +1290,47 @@ select.form-control { cursor: pointer; }
    RESPONSIVE
    ===================================================== */
 
-/* ── Tablet (≤1100px) ── */
-@media (max-width: 1100px) {
-  .nav-rating-badge { display: none; }
-  .solutions-grid   { grid-template-columns: repeat(2, 1fr); }
-  .reviews-grid   { grid-template-columns: repeat(2, 1fr); }
-  .footer-grid      { grid-template-columns: 1fr 1fr; }
-  .service-2col     { grid-template-columns: 1fr !important; }
+/* ── Wide nav compression (≤1350px) — tighten gaps ── */
+@media (max-width: 1350px) {
+  .nav-container { gap: 8px; }
+  .nav-links > li > a { padding: 8px 10px; }
+  .nav-right { gap: 12px; }
 }
 
-/* ── Phablet (≤900px) ── */
+/* ── Tablet (≤1100px) — phone icon only, short support label ── */
+@media (max-width: 1100px) {
+  .nav-rating-badge { display: none; }
+  .nav-container { gap: 4px; }
+  .nav-links > li > a { padding: 6px 8px; }
+  .nav-right { gap: 8px; }
+  .nav-phone-num { display: none; }
+  .btn-text-full { display: none; }
+  .btn-text-short { display: inline; }
+  .solutions-grid { grid-template-columns: repeat(2, 1fr); }
+  .reviews-grid   { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid    { grid-template-columns: 1fr 1fr; }
+  .service-2col   { grid-template-columns: 1fr !important; }
+}
+
+/* ── Hamburger (≤1050px) — nav collapses, Get a Quote stays in bar ── */
+@media (max-width: 1050px) {
+  :root { --nav-height: 64px; }
+  .nav-links              { display: none; }
+  .nav-right              { gap: 8px; }
+  .nav-right .btn-support { display: none; }
+  .nav-phone              { display: none; }
+  .hamburger              { display: flex; margin-left: auto; }
+  .mobile-menu            { display: block; }
+  .dropdown-menu          { display: none; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+}
+
+/* ── Phone (≤900px) ── */
 @media (max-width: 900px) {
   :root { --nav-height: 64px; }
 
-  /* Nav */
-  .nav-links               { display: none; }
-  .nav-right               { gap: 8px; }
-  .nav-right .btn-accent   { display: none; }
-  .nav-right .btn-support  { display: none; }
-  .nav-phone               { display: none; }
-  .hamburger               { display: flex; margin-left: auto; }
-  .mobile-menu             { display: block; }
-  .dropdown-menu           { display: none; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
+  /* Nav — hamburger already active; compact Get a Quote */
+  .nav-right    { gap: 8px; }
+  .btn-accent   { padding: 10px 16px; font-size: 0.85rem; }
 
   /* Logo */
   .nav-logo-img { height: 38px; max-width: 160px; }
