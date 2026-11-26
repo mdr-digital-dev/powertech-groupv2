@@ -1933,13 +1933,16 @@ select.form-control { cursor: pointer; }
 /* Page service sections (IT pages) */
 .service-what-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
   margin-top: 32px;
 }
+@media (max-width: 640px) {
+  .service-what-grid { grid-template-columns: 1fr; gap: 16px; }
+}
 .service-what-item {
-  display: flex; gap: 14px; align-items: flex-start;
-  padding: 20px 18px; background: #fff; border-radius: 10px;
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 24px 22px; background: #fff; border-radius: 12px;
   box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);
 }
 .service-what-icon {
