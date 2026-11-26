@@ -340,28 +340,50 @@
   </div>
 </div>
 
-<!-- ══════════════════ EXPLAINER VIDEO ══════════════════ -->
-<!-- Option A: video section sits directly below the hero -->
-<section class="section" id="explainer" style="background:#f8f9fb;padding:64px 0;">
+<!-- ══════════════════ REACTIVE vs MSP COMPARISON ══════════════════ -->
+<section class="section" id="why-msp" style="background:#f8f9fb;padding:72px 0;">
   <div class="container">
-    <div class="section-header center fade-in" style="margin-bottom:36px;">
-      <span class="section-label">See How It Works</span>
-      <h2 class="section-title">See How PowerTech Works</h2>
-      <p class="section-subtitle">Watch a quick overview of what it means to have PowerTech as your IT and security partner.</p>
+    <div class="section-header center fade-in" style="margin-bottom:40px;">
+      <span class="section-label">Why MSP?</span>
+      <h2 class="section-title">Reactive IT vs. PowerTech MSP</h2>
+      <p class="section-subtitle">Most businesses call an IT person when something breaks. That's expensive, unpredictable, and reactive. Here's what changes when you have a real MSP.</p>
     </div>
-    <div class="video-explainer-wrap fade-in">
-      <!-- VIDEO FILES: add media/powertech-explainer.mp4 + .webm + poster before merge.
-           Download from Mac's Drive, compress with ffmpeg (H.264, faststart, max 1080p, ~8 MB).
-           Run: ffmpeg -i media/source/powertech-explainer.mp4 -vf scale=-2:1080 -c:v libx264 -crf 24 -movflags +faststart -c:a aac -b:a 128k media/powertech-explainer.mp4
-           Poster: ffmpeg -i media/powertech-explainer.mp4 -vframes 1 -ss 00:00:03 media/powertech-explainer-poster.jpg -->
-      <video controls playsinline preload="none" poster="images/hero/IMG_3308.jpg" style="width:100%;display:block;background:#111;">
-        <source src="media/powertech-explainer.webm" type="video/webm" />
-        <source src="media/powertech-explainer.mp4"  type="video/mp4" />
-        <p style="color:#fff;padding:24px;">Your browser does not support HTML video. <a href="media/powertech-explainer.mp4" style="color:var(--blue);">Download the video</a>.</p>
-      </video>
+    <div class="compare-grid fade-in">
+      <div class="compare-col compare-bad">
+        <div class="compare-col-header">
+          <i class="fas fa-times-circle"></i>
+          <h3>Reactive IT (Break/Fix)</h3>
+        </div>
+        <ul>
+          <li><i class="fas fa-times"></i> Pay per incident — surprise bills every time</li>
+          <li><i class="fas fa-times"></i> No monitoring — you notice the problem first</li>
+          <li><i class="fas fa-times"></i> Hours or days to get someone on-site</li>
+          <li><i class="fas fa-times"></i> No cybersecurity unless you ask and pay extra</li>
+          <li><i class="fas fa-times"></i> Multiple vendors, no single point of accountability</li>
+          <li><i class="fas fa-times"></i> No reporting — zero visibility into your IT health</li>
+        </ul>
+      </div>
+      <div class="compare-col compare-good">
+        <div class="compare-col-header">
+          <i class="fas fa-check-circle"></i>
+          <h3>PowerTech MSP</h3>
+        </div>
+        <ul>
+          <li><i class="fas fa-check"></i> Flat monthly rate — no surprise bills</li>
+          <li><i class="fas fa-check"></i> 24/7 monitoring — we catch it before you do</li>
+          <li><i class="fas fa-check"></i> Remote + on-site helpdesk with fast response</li>
+          <li><i class="fas fa-check"></i> Endpoint protection &amp; threat detection included</li>
+          <li><i class="fas fa-check"></i> One team for IT, cybersecurity &amp; physical security</li>
+          <li><i class="fas fa-check"></i> Monthly reports — full visibility into your environment</li>
+        </ul>
+      </div>
     </div>
+    <p style="text-align:center;margin-top:36px;"><a href="managed-it" class="btn btn-primary btn-lg">Learn About Managed IT <i class="fas fa-arrow-right"></i></a></p>
   </div>
 </section>
+<!-- NOTE: When video files are ready (download from Mac's Drive → ffmpeg → media/powertech-explainer.mp4),
+     replace this section with the explainer video section. ffmpeg cmd:
+     ffmpeg -i media/source/powertech-explainer.mp4 -vf scale=-2:1080 -c:v libx264 -crf 24 -movflags +faststart -c:a aac -b:a 128k media/powertech-explainer.mp4 -->
 
 <!-- ══════════════════ WHAT PROACTIVE IT MEANS ══════════════════ -->
 <section class="section" id="proactive-it" style="background:var(--navy);padding:72px 0;">

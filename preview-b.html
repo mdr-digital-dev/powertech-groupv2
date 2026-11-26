@@ -320,16 +320,52 @@
         <span>UL Listed &amp; Licensed</span>
       </div>
     </div>
-    <!-- Right: explainer video (Option B) -->
+    <!-- Right: live MSP monitoring dashboard -->
     <div class="hero-msp-video">
-      <!-- VIDEO FILES: add media/powertech-explainer.mp4 + .webm + poster before merge.
-           Download from Mac's Drive, compress with ffmpeg (H.264, faststart, max 1080p, ~8 MB).
-           Run: ffmpeg -i media/source/powertech-explainer.mp4 -vf scale=-2:1080 -c:v libx264 -crf 24 -movflags +faststart -c:a aac -b:a 128k media/powertech-explainer.mp4
-           Poster: ffmpeg -i media/powertech-explainer.mp4 -vframes 1 -ss 00:00:03 media/powertech-explainer-poster.jpg -->
-      <video controls playsinline preload="none" poster="images/hero/IMG_3308.jpg" style="width:100%;display:block;">
-        <source src="media/powertech-explainer.webm" type="video/webm" />
-        <source src="media/powertech-explainer.mp4"  type="video/mp4" />
-      </video>
+      <div class="hero-msp-dashboard">
+        <div class="dash-header">
+          <span class="dash-live-dot"></span>
+          <span class="dash-title">PowerTech &mdash; Live Monitoring</span>
+        </div>
+        <div class="dash-rows">
+          <div class="dash-row">
+            <i class="fas fa-desktop"></i>
+            <span class="dash-label">Devices Online</span>
+            <span class="dash-value good">24 / 24 &nbsp;<i class="fas fa-check-circle"></i></span>
+          </div>
+          <div class="dash-row">
+            <i class="fas fa-shield-virus"></i>
+            <span class="dash-label">Threats Detected</span>
+            <span class="dash-value good">0 Active &nbsp;<i class="fas fa-check-circle"></i></span>
+          </div>
+          <div class="dash-row">
+            <i class="fas fa-database"></i>
+            <span class="dash-label">Backup Status</span>
+            <span class="dash-value good">Complete &nbsp;<i class="fas fa-check-circle"></i></span>
+          </div>
+          <div class="dash-row">
+            <i class="fas fa-sync-alt"></i>
+            <span class="dash-label">Security Patches</span>
+            <span class="dash-value good">Up to Date &nbsp;<i class="fas fa-check-circle"></i></span>
+          </div>
+          <div class="dash-row">
+            <i class="fas fa-lock"></i>
+            <span class="dash-label">Endpoint Protection</span>
+            <span class="dash-value good">Active &nbsp;<i class="fas fa-check-circle"></i></span>
+          </div>
+        </div>
+        <div class="dash-alert">
+          <div class="dash-alert-icon"><i class="fas fa-bolt"></i></div>
+          <div>
+            <div class="dash-alert-title">Ticket #1049 &mdash; Resolved</div>
+            <div class="dash-alert-desc">Printer offline &rarr; Fixed remotely &nbsp;&middot;&nbsp; 4 min response</div>
+          </div>
+        </div>
+        <div class="dash-footer">
+          <span class="dash-live-dot"></span>
+          <span>Monitoring 24/7 &nbsp;&middot;&nbsp; <span id="dash-clock"></span></span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -348,20 +384,6 @@
     <div class="trust-item"><i class="fas fa-certificate"></i> UL Listed &amp; Licensed</div>
   </div>
 </div>
-
-<!-- ══════════════════ COVERAGE MAP (Option B: directly below hero) ══════════════════ -->
-<section class="section" id="coverage" style="background:var(--navy);padding:60px 0;">
-  <div class="container">
-    <div class="section-header center fade-in" style="margin-bottom:32px;">
-      <span class="section-label" style="color:var(--red);">Nationwide Reach</span>
-      <h2 class="section-title" style="color:#fff;">Clients Across the Country</h2>
-      <p class="section-subtitle" style="color:rgba(255,255,255,0.7);max-width:640px;margin:0 auto;">From our Chicago headquarters to clients coast to coast — PowerTech delivers world-class security and IT infrastructure wherever you need it.</p>
-    </div>
-    <div class="fade-in" style="max-width:900px;margin:0 auto;border-radius:12px;overflow:hidden;box-shadow:0 4px 32px rgba(0,0,0,0.4);">
-      <img src="images/us-map.svg" alt="Map of the United States showing PowerTech Group client locations coast to coast" style="width:100%;display:block;" loading="lazy" />
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════ WHAT PROACTIVE IT MEANS ══════════════════ -->
 <section class="section" id="proactive-it" style="background:var(--navy);padding:72px 0;">
@@ -920,6 +942,9 @@ document.querySelectorAll('.review-read-more').forEach(function(btn) {
 });
 </script>
 <!-- Hero carousel JS removed — hero is now a static two-column layout -->
+<script>
+(function(){var el=document.getElementById('dash-clock');if(!el)return;function tick(){var d=new Date();el.textContent=d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit',second:'2-digit',hour12:true});}tick();setInterval(tick,1000);})();
+</script>
 <script>
   document.querySelectorAll('.yt-facade').forEach(facade => {
     facade.addEventListener('click', () => {
